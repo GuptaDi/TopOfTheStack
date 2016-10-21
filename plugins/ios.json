@@ -24,6 +24,11 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.starter"
+        },
+        "cordova-plugin-facebook4": {
+            "APP_ID": "1133177240104177",
+            "APP_NAME": "TopOfTheStack",
+            "PACKAGE_NAME": "com.ionicframework.starter"
         }
     },
     "dependent_plugins": {}
