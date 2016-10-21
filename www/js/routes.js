@@ -10,41 +10,41 @@ angular.module('app.routes', [])
     
   
 
-      .state('topOSHomeScreen', {
-    url: '/page1',
-    templateUrl: 'templates/topOSHomeScreen.html',
-    controller: 'topOSHomeScreenCtrl'
+      .state('homePage', {
+    url: '/homePage',
+    templateUrl: 'templates/homePage.html',
+    controller: 'homePageCtrl'
   })
 
-  .state('menu.allDataContentsTopOfTheStack', {
-    url: '/page2',
+  .state('menu.tOP', {
+    url: '/outputData',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/allDataContentsTopOfTheStack.html',
-        controller: 'allDataContentsTopOfTheStackCtrl'
+        templateUrl: 'templates/tOP.html',
+        controller: 'tOPCtrl'
       }
     }
   })
 
   .state('menu', {
-    url: '/side-menu21',
+    url: '/menuContents',
     templateUrl: 'templates/menu.html',
     controller: 'menuCtrl'
   })
 
   .state('login', {
-    url: '/page4',
+    url: '/loginScreen',
     templateUrl: 'templates/login.html',
     controller: 'loginCtrl'
   })
 
-  .state('startingPageTOS', {
-    url: '/page6',
-    templateUrl: 'templates/startingPageTOS.html',
-    controller: 'startingPageTOSCtrl'
+  .state('getStarted', {
+    url: '/getStarted',
+    templateUrl: 'templates/getStarted.html',
+    controller: 'getStartedCtrl'
   })
 
-$urlRouterProvider.otherwise('/page1')
+$urlRouterProvider.otherwise('/getStarted')
 
   
 

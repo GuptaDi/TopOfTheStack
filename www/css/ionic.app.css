@@ -9728,10 +9728,10 @@ a.button {
     background: rgba(255, 255, 255, 0.4); }
 
 .side-menu-gradient {
-  background: -webkit-linear-gradient(left top, #323232, #007aff);
-  background: -o-linear-gradient(bottom right, #323232, #007aff);
-  background: -moz-linear-gradient(bottom right, #323232, #007aff);
-  background: linear-gradient(to bottom right, #323232, #007aff); }
+  background: -webkit-linear-gradient(left top, #5260f2, #007aff);
+  background: -o-linear-gradient(bottom right, #5260f2, #007aff);
+  background: -moz-linear-gradient(bottom right, #5260f2, #007aff);
+  background: linear-gradient(to bottom right, #5260f2, #007aff); }
 
 .profile-image img {
   border-radius: 50%;
@@ -9740,3 +9740,6 @@ a.button {
   -webkit-box-shadow: 0px 0px 142px -37px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 142px -37px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 142px -37px rgba(0, 0, 0, 0.75); }
+
+ion-view, .pane, .view {
+  background-color: #2C6BE2; }
