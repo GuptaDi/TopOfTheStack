@@ -1,4 +1,4 @@
-<ion-view title="HomePage" id="page1">
+<ion-view title="HomePage" id="page1" ng-controller="homePageCtrl" ng-init="getTechGraph()">
     <ion-nav-buttons side="left" class="has-header">
         <button class="button button-positive icon ion-android-menu"></button>
     </ion-nav-buttons>
@@ -9,5 +9,9 @@
                 <input type="search" placeholder="Search By Tag">
             </label>
         </form>
+        
+        <div id="graphcontainer" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto" >
+        </div>
+        
     </ion-content>
 </ion-view>
