@@ -25,3 +25,20 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
     }
   });
 })
+
+
+angular.module('myapp.controllers', ['ionic.cloud'])
+
+.controller('MyCtrl', function($scope, $ionicFacebookAuth, $ionicUser) {
+  $scope.loginFacebook = function(){
+ 
+  $ionicFacebookAuth.login(["public_profile", "email"]).then(function(success){
+ 
+    console.log(success);
+ 
+  }, function(error){
+    console.log(error);
+  });
+ 
+};
+})

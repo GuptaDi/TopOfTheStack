@@ -40,3 +40,17 @@ function ($scope, $stateParams) {
 
 }])
  
+
+.controller('fbAuthCtrl',['$scope','$ionicFacebookAuth','$ionicUser', function($scope, $ionicFacebookAuth, $ionicUser) {
+    console.log("#######");
+    $scope.loginFacebook = function(){
+        console.log(" Coming in FB ");
+        $ionicFacebookAuth.login(["public_profile", "email"]).then(function(success){
+        console.log(success);
+ 
+    }, function(error){
+        console.log(error);
+  });
+ 
+};
+}])

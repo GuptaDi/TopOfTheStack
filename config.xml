@@ -82,4 +82,5 @@
         <variable name="APP_ID" value="1133177240104177" />
         <variable name="APP_NAME" value="TopOfTheStack" />
     </plugin>
+    <plugin name="cordova-plugin-inappbrowser" spec="~1.5.0" />
 </widget>

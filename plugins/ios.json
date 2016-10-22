@@ -29,6 +29,9 @@
             "APP_ID": "1133177240104177",
             "APP_NAME": "TopOfTheStack",
             "PACKAGE_NAME": "com.ionicframework.starter"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.ionicframework.tos688408"
         }
     },
     "dependent_plugins": {}
