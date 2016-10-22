@@ -43,6 +43,12 @@ angular.module('app.routes', [])
     templateUrl: 'templates/getStarted.html',
     controller: 'getStartedCtrl'
   })
+  
+  .state('allDataContents', {
+    url: '/allDataContents',
+    templateUrl: 'templates/allDataContents.html',
+    controller: 'allDataContentsCtrl'
+  })
 
 $urlRouterProvider.otherwise('/getStarted')
 

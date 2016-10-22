@@ -1,6 +1,6 @@
 <ion-view title="HomePage" id="page1" ng-controller="homePageCtrl" ng-init="getTechGraph()">
     <ion-nav-buttons side="left" class="has-header">
-        <button class="button button-positive icon ion-android-menu"></button>
+        <button ui-sref="menu.tOP" class="button button-positive icon ion-android-menu"></button>
     </ion-nav-buttons>
     <ion-content padding="true" class="has-header">
         <form id="homePage-form1" class="list">
@@ -12,6 +12,5 @@
         
         <div id="graphcontainer" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto" >
         </div>
-        
     </ion-content>
 </ion-view>

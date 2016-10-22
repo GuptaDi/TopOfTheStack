@@ -5,10 +5,14 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives','app.services',])
+angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives','app.services','ionic.cloud'])
 
-.config(function($ionicConfigProvider){
-  
+.config(function($ionicCloudProvider) {
+  $ionicCloudProvider.init({
+    "core": {
+      "app_id": "2c145d19"
+    }
+  });
 })
 
 .run(function($ionicPlatform) {
@@ -27,18 +31,3 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
 })
 
 
-angular.module('app.controllers', ['ionic.cloud'])
-
-.controller('MyCtrl', function($scope, $ionicFacebookAuth, $ionicUser) {
-  $scope.loginFacebook = function(){
- 
-  $ionicFacebookAuth.login(["public_profile", "email"]).then(function(success){
- 
-    console.log(success);
- 
-  }, function(error){
-    console.log(error);
-  });
- 
-};
-})
