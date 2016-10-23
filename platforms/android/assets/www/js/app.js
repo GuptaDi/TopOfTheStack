@@ -30,4 +30,10 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
   });
 })
 
-
+listnew=[{name: 'javascript',y:  37},{name: 'java',y:  30},{name: 'android',y: 24},
+         {name: 'php',y:  23},{name: 'python',y:   22},{name: 'c# ',y: 21},
+         {name: 'html',y:   17},{name: 'jquery',y:   15},{name: 'ios',y: 13},
+         {name: 'css',y:  11},{name: 'c++',y:  10},{name: 'mysql',y: 10},
+         {name: 'angularjs',y:  9},{name: 'swift',y:  8},{name: 'sql',y: 7}
+        
+        ];

@@ -1,9 +1,17 @@
 <ion-view title="All Data Contents - Top Of The Stack" id="page5" ng-controller="allDataContentsCtrl" ng-init="getStackN()">
     <ion-content padding="true" class="has-header">
+        
+        <!--<ion-item collection-repeat="data in stackData">
+    {{data.title}}
+  </ion-item> -->
+        
+        
         <div class="card" ng-repeat="data in stackData">
-            <div class="item item-text-wrap">
-                {{data.title}}
-            </div>
-        </div>
+  <div class="item item-text-wrap">
+       {{data.title}}
+  </div>
+</div>
+
+        
     </ion-content>
 </ion-view>

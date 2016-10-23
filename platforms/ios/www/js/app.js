@@ -5,10 +5,14 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives','app.services',])
+angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives','app.services','ionic.cloud'])
 
-.config(function($ionicConfigProvider){
-  
+.config(function($ionicCloudProvider) {
+  $ionicCloudProvider.init({
+    "core": {
+      "app_id": "2c145d19"
+    }
+  });
 })
 
 .run(function($ionicPlatform) {
@@ -26,19 +30,10 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
   });
 })
 
-
-angular.module('myapp.controllers', ['ionic.cloud'])
-
-.controller('MyCtrl', function($scope, $ionicFacebookAuth, $ionicUser) {
-  $scope.loginFacebook = function(){
- 
-  $ionicFacebookAuth.login(["public_profile", "email"]).then(function(success){
- 
-    console.log(success);
- 
-  }, function(error){
-    console.log(error);
-  });
- 
-};
-})
+listnew=[{name: 'javascript',y:  37},{name: 'java',y:  30},{name: 'android',y: 24},
+         {name: 'php',y:  23},{name: 'python',y:   22},{name: 'c# ',y: 21},
+         {name: 'html',y:   17},{name: 'jquery',y:   15},{name: 'ios',y: 13},
+         {name: 'css',y:  11},{name: 'c++',y:  10},{name: 'mysql',y: 10},
+         {name: 'angularjs',y:  9},{name: 'swift',y:  8},{name: 'sql',y: 7}
+        
+        ];

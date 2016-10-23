@@ -10,20 +10,24 @@ angular.module('app.routes', [])
     
   
 
-      .state('homePage', {
-    url: '/homePage',
-    templateUrl: 'templates/homePage.html',
-    controller: 'homePageCtrl'
-  })
-
-  .state('menu.tOP', {
-    url: '/outputData',
+      .state('menu.homePage', {
+      url: '/homePage',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/tOP.html',
-        controller: 'tOPCtrl'
+        templateUrl: 'templates/homePage.html',
+        controller: 'homePageCtrl'
       }
     }
+})
+
+  .state('tOP', {
+    url: '/outputData',
+    //views: {
+      //'side-menu21': {
+        templateUrl: 'templates/tOP.html',
+        controller: 'tOPCtrl'
+      //}
+    //}
   })
 
   .state('menu', {
@@ -42,6 +46,12 @@ angular.module('app.routes', [])
     url: '/getStarted',
     templateUrl: 'templates/getStarted.html',
     controller: 'getStartedCtrl'
+  })
+  
+  .state('allDataContents', {
+    url: '/allDataContents',
+    templateUrl: 'templates/allDataContents.html',
+    controller: 'allDataContentsCtrl'
   })
 
 $urlRouterProvider.otherwise('/getStarted')
