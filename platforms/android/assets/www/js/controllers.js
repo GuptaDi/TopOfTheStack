@@ -5,7 +5,6 @@ angular.module('app.controllers', [])
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams, StackDataFactory) {
     $scope.getTechGraph = function(){
-        console.log(" Get Graph Call ---------- ");
         var n= listnew ;
         // Build the chart
         $('#graphcontainer').highcharts({
