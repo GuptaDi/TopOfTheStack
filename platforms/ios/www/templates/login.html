@@ -1,14 +1,15 @@
 <ion-view title="Login" id="page4">
     <ion-content padding="true" class="has-header" >
         <form id="login-form2" class="list">
-            <div class="spacer" style="height: 40px;"></div>
-<<<<<<< Updated upstream
-            <a ui-sref="menu.homePage" id="login-button4" class="button button-assertive  button-block">Sign in with Gmail</a>
-=======
-            <a ui-sref="homePage" id="login-button4" class="button button-assertive  button-block">Sign in with Gmail</a>
->>>>>>> Stashed changes
-            <div ng-controller="fbAuthCtrl">
-                <a id="login-button5" style="border-radius:2px 2px 2px 2px;" class="button button-positive  button-block icon ion-social-facebook-outline" 
+      <div class="spacer" style="width: 300px; height: 65px;"></div>
+      <div>
+        <img src="img/icon.png" width="50%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+      </div>
+	    <div class="spacer" style="width: 300px; height: 37px;"></div>
+     	 	<a ui-sref="menu.homePage" id="login-button4" style="font-size:18px;border-radius:10px 10px 10px 10px;" class="button button-assertive  button-block icon-left ion-social-googleplus">Sign in with Google</a>
+     
+		    <div ng-controller="fbAuthCtrl">
+                <a id="login-button5"  style="border-radius:10px 10px 10px 10px;" class="button button-positive  button-block icon-left ion-social-facebook" 
                     ng-click="loginFacebook()">Sign in with Facebook</a>
             </div>
         </form>
