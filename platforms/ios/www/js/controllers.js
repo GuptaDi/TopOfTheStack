@@ -96,3 +96,18 @@ function ($scope, $stateParams) {
  
 };
 }])
+
+.controller('googleAuthCtrl',['$scope','$ionicGoogleAuth','$ionicUser', function($scope, $ionicFacebookAuth, $ionicUser) {
+    console.log("#######");
+    $scope.loginGoogle = function(){
+        console.log(" Coming in FB ");
+        $ionicGoogleAuth.login(["public_profile", "email"]).then(function(success){
+        console.log(success);
+ 
+    }, function(error){
+        console.log(error);
+  });
+ 
+};
+}])
+

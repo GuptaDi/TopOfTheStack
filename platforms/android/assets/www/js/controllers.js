@@ -83,16 +83,39 @@ function ($scope, $stateParams) {
 }])
  
 
-.controller('fbAuthCtrl',['$scope','$ionicFacebookAuth','$ionicUser', function($scope, $ionicFacebookAuth, $ionicUser) {
+.controller('fbAuthCtrl',['$scope','$ionicFacebookAuth','$ionicUser','$state', function($scope, $ionicFacebookAuth, $ionicUser, $state) {
     console.log("#######");
     $scope.loginFacebook = function(){
         console.log(" Coming in FB ");
         $ionicFacebookAuth.login(["public_profile", "email"]).then(function(success){
+             console.log(" Coming in Facebook ");
+            console.log(success);
+            $state.go('menu.homePage')
+ 
+    }, function(error){
+             console.log(" Coming in Facebook ");
+        console.log(error);
+            var alertPopup = $ionicPopup.alert({
+            title: 'Login failed!',
+            template: 'Please check your credentials!'
+        });
+  });
+ 
+};
+}])
+
+.controller('googleAuthCtrl',['$scope','$ionicGoogleAuth','$ionicUser', function($scope, $ionicGoogleAuth, $ionicUser) {
+    console.log("#######");
+    $scope.loginGoogle = function(){
+        console.log(" Coming in Google ");
+        $ionicGoogleAuth.login().then(function(success){
         console.log(success);
  
     }, function(error){
+             console.log(" Failed in Google ");
         console.log(error);
   });
  
 };
 }])
+
