@@ -1,5 +1,12 @@
-<ion-view title="GetStarted" id="page6">
-    <ion-content padding="true" class="has-header">
-        <a ui-sref="login" id="getStarted-button6" class="button button-stable  button-block">Get Started</a>
+<ion-view  id="page6">
+    <ion-content ng-controller="sliderCtrl">
+        <ion-slides active-slide="0" pager-click="navSlide(index)" does-continue="true">
+            <ion-slide-page ng-repeat="slideImage in sliderImages">
+                <img src="{{slideImage}}" class="slider-img-dimensions">
+                <div class="skip-slider-start-home">
+                    <a ui-sref="login" id="getStarted-button6" >Skip - Start</a>
+                </div>
+            </ion-slide-page>
+        </ion-slides>        
     </ion-content>
 </ion-view>

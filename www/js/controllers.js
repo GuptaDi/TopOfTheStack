@@ -78,7 +78,7 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-
+   
 
 }])
  
@@ -103,6 +103,22 @@ function ($scope, $stateParams) {
   });
  
 };
+}])
+
+
+.controller('sliderCtrl', ['$scope', '$stateParams','$ionicSlideBoxDelegate', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams,$ionicSlideBoxDelegate) {
+     $scope.navSlide = function(index){
+         $ionicSlideBoxDelegate.slide(index);
+       // $ionicSlideBoxDelegate.slide(index,500);
+    }
+     $scope.sliderImages = [
+         "img/slider1.png",
+         "img/slider2.png"
+     ];
+
 }])
 
 .controller('googleAuthCtrl',['$scope','$ionicGoogleAuth','$ionicUser', function($scope, $ionicGoogleAuth, $ionicUser) {
