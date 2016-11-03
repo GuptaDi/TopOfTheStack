@@ -50,6 +50,9 @@
         <param name="onload" value="true" />
     </feature>
     <access origin="https://accounts.google.com/*" />
+    <feature name="PushNotification">
+        <param name="ios-package" value="PushPlugin" />
+    </feature>
     <name>TOS</name>
     <description>
         An Ionic Framework and Cordova project.

@@ -35,6 +35,10 @@
         },
         "cordova-plugin-googleplus": {
             "PACKAGE_NAME": "com.ionicframework.tos688408"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "923688165386",
+            "PACKAGE_NAME": "com.ionicframework.tos688408"
         }
     },
     "dependent_plugins": {}

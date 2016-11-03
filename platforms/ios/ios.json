@@ -75,6 +75,10 @@
                         {
                             "xml": "<access origin=\"https://accounts.google.com/*\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"PushNotification\"><param name=\"ios-package\" value=\"PushPlugin\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -114,6 +118,24 @@
                             "xml": "<array><string>fbapi</string><string>fb-messenger-api</string><string>fbauth2</string><string>fbshareextension</string></array>",
                             "count": 1
                         }
+                    ],
+                    "UIBackgroundModes": [
+                        {
+                            "xml": "<array><string>remote-notification</string></array>",
+                            "count": 1
+                        }
+                    ],
+                    "GCM_SENDER_ID": [
+                        {
+                            "xml": "<string>923688165386</string>",
+                            "count": 1
+                        }
+                    ],
+                    "IS_GCM_ENABLED": [
+                        {
+                            "xml": "<true />",
+                            "count": 1
+                        }
                     ]
                 }
             }
@@ -148,6 +170,10 @@
         },
         "cordova-plugin-googleplus": {
             "REVERSED_CLIENT_ID": "myreversedclientid",
+            "PACKAGE_NAME": "com.ionicframework.tos688408"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "923688165386",
             "PACKAGE_NAME": "com.ionicframework.tos688408"
         }
     },
@@ -226,6 +252,14 @@
             "clobbers": [
                 "window.plugins.googleplus"
             ]
+        },
+        {
+            "file": "plugins/phonegap-plugin-push/www/push.js",
+            "id": "phonegap-plugin-push.PushNotification",
+            "pluginId": "phonegap-plugin-push",
+            "clobbers": [
+                "PushNotification"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -237,6 +271,7 @@
         "ionic-plugin-keyboard": "2.2.1",
         "cordova-plugin-facebook4": "1.7.4",
         "cordova-plugin-inappbrowser": "1.5.0",
-        "cordova-plugin-googleplus": "5.1.1"
+        "cordova-plugin-googleplus": "5.1.1",
+        "phonegap-plugin-push": "1.8.3"
     }
 }

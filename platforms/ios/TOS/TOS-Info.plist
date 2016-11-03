@@ -90,5 +90,13 @@
       <string>fbauth2</string>
       <string>fbshareextension</string>
     </array>
+    <key>UIBackgroundModes</key>
+    <array>
+      <string>remote-notification</string>
+    </array>
+    <key>GCM_SENDER_ID</key>
+    <string>923688165386</string>
+    <key>IS_GCM_ENABLED</key>
+    <true/>
   </dict>
 </plist>

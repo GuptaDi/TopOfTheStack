@@ -75,5 +75,15 @@
         "variables": {
             "REVERSED_CLIENT_ID": "myreversedclientid"
         }
+    },
+    "phonegap-plugin-push": {
+        "source": {
+            "type": "registry",
+            "id": "phonegap-plugin-push@1.8.3"
+        },
+        "is_top_level": true,
+        "variables": {
+            "SENDER_ID": "923688165386"
+        }
     }
 }
