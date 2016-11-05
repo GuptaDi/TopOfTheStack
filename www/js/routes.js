@@ -8,9 +8,19 @@ angular.module('app.routes', [])
     // Each state's controller can be found in controllers.js
     $stateProvider
 
+    // setup an abstract state for the tabs directive
+        .state('tab', {
+            url: '/tab',
+            abstract: true,
+            templateUrl: 'templates/tabs.html'
+        })
+        .state('menu', {
+            url: '/menuContents',
+            templateUrl: 'templates/menu.html',
+            controller: 'menuCtrl'
+        })
 
-
-        .state('menu.homePage', {
+    .state('menu.homePage', {
         url: '/homePage',
         views: {
             'side-menu21': {
@@ -30,11 +40,7 @@ angular.module('app.routes', [])
             //}
     })
 
-    .state('menu', {
-        url: '/menuContents',
-        templateUrl: 'templates/menu.html',
-        controller: 'menuCtrl'
-    })
+
 
     .state('login', {
         url: '/loginScreen',
@@ -54,7 +60,12 @@ angular.module('app.routes', [])
         controller: 'allDataContentsCtrl'
     })
 
-    $urlRouterProvider.otherwise('/getStarted')
+    .state('settings', {
+        url: '/settings',
+        templateUrl: 'templates/settings.html',
+        controller: 'settingsCtrl'
+    })
+    $urlRouterProvider.otherwise('/tab')
 
 
 

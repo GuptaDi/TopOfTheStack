@@ -1,6 +1,6 @@
 angular.module('app.controllers', [])
 
-.controller('homePageCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('homePageCtrl', ['$scope', '$stateParams','StackDataFactory', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
     // You can include any angular dependencies as parameters for this function
     // TIP: Access Route Parameters for your page via $stateParams.parameterName
     function($scope, $stateParams, StackDataFactory) {
@@ -37,6 +37,41 @@ angular.module('app.controllers', [])
                 }]
             });
         };
+        $scope.getTechGraph2 = function() {
+            var n = listnew;
+            // Build the chart
+            $('#graphcontainer2').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Most discussed technologies on stackoverflow'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: false
+                        },
+                        showInLegend: true
+                    }
+                },
+                series: [{
+                    name: '',
+                    colorByPoint: true,
+                    data: n
+                }]
+            });
+        };
+        
+    
     }
 ])
 
@@ -88,6 +123,51 @@ angular.module('app.controllers', [])
     }
 ])
 
+.controller('settingsCtrl', function ($scope, ionicDatePicker) {
+
+//     $scope.currentDate = new Date();
+// $scope.minDate = new Date(2105, 6, 1);
+// $scope.maxDate = new Date(2015, 6, 31);
+ 
+// $scope.datePickerCallback = function (val) {
+//     if (!val) { 
+//         console.log('Date not selected');
+//     } else {
+//         console.log('Selected date is : ', val);
+//     }
+// };
+
+$scope.selectedDate1;
+    $scope.selectedDate2;
+
+    $scope.openDatePickerOne = function (val) {
+      var ipObj1 = {
+        callback: function (val) {  //Mandatory
+          console.log('Return value from the datepicker popup is : ' + val, new Date(val));
+          $scope.selectedDate1 = new Date(val);
+        },
+        disabledDates: [
+          new Date(2016, 2, 16),
+          new Date(2015, 3, 16),
+          new Date(2015, 4, 16),
+          new Date(2015, 5, 16),
+          new Date('Wednesday, August 12, 2015'),
+          new Date("08-16-2016"),
+          new Date(1439676000000)
+        ],
+        from: new Date(2012, 1, 1),
+        to: new Date(2018, 10, 30),
+        inputDate: new Date(),
+        mondayFirst: true,
+        disableWeekdays: [],
+        closeOnSelect: false,
+        templateType: 'popup'
+      };
+      ionicDatePicker.openDatePicker(ipObj1);
+    }
+
+    
+})
 
 .controller('fbAuthCtrl', ['$scope', '$ionicFacebookAuth', '$ionicUser', '$state', function($scope, $ionicFacebookAuth, $ionicUser, $state) {
     $scope.loginFacebook = function() {

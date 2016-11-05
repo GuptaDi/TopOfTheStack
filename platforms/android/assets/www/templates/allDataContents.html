@@ -1,6 +1,6 @@
 <ion-view title="All Data Contents - Top Of The Stack" id="page5" ng-controller="allDataContentsCtrl" ng-init="getStackN()">
     <ion-content padding="true" class="has-header">
-        <div class="card" ng-repeat="data in stackData">
+        <div class="card" ng-repeat="data in stackData.items">
             <div class="item item-text-wrap">
                 {{data.title}}
             </div>

@@ -4,7 +4,7 @@ angular.module('app.services', [])
 
 .factory('StackDataFactory', ['$http', function($http) {
     //  var stackCallUrl = "http://54.213.200.141:8080/Raml/rest/userquestions/23";
-    var stackCallUrl = "https://jsonplaceholder.typicode.com/posts";
+    var stackCallUrl = "http://api.stackexchange.com/2.2/questions?order=desc&sort=activity&site=stackoverflow";
     //  var allStackData ={};
     var stackD = {
         getStackData: function() {

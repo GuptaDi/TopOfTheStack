@@ -1,13 +1,20 @@
-<ion-view title="Top Of The Stack" id="page1" ng-controller="homePageCtrl" ng-init="getTechGraph()">
+<ion-view title="Top Of The Stack" id="page1" ng-controller="homePageCtrl" ng-init="getTechGraph();getTechGraph2();">
     <ion-content padding="true" class="has-header">
-        <form id="homePage-form1" class="list">
-            <label class="item item-input">
-                <i class="icon ion-search placeholder-icon"></i>
-                <input type="search" placeholder="Search By Tag">
-            </label>
-        </form>
-        
-        <div id="graphcontainer" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto" >
+       
+        <div>
+            <form id="homePage-form1" class="list">
+                <label class="item item-input">
+                    <i class="icon ion-search placeholder-icon"></i>
+                    <input type="search" placeholder="Search By Tag">
+                </label>
+            </form>
         </div>
+        <br/>
+        <div id="graphcontainer" class="graphTechnology" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto">
+        </div>
+        <br/>
+        <div id="graphcontainer2" class="graphTechnology" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto">
+        </div>
+        
     </ion-content>
 </ion-view>
