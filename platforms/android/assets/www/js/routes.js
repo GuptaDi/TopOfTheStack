@@ -101,7 +101,17 @@ angular.module('app.routes', [])
       }
     })
 
-    $urlRouterProvider.otherwise('/login')  // /tab/homePage
+    .state('app.searchContent', {
+        url: '/searchContent',
+        views: {
+            'tab-posts': {
+            templateUrl: 'templates/searchContent.html',
+            }
+        }
+    })
+    
+    
+    $urlRouterProvider.otherwise('/app/homePage')  // /tab/homePage
 
 
 

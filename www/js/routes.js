@@ -101,7 +101,15 @@ angular.module('app.routes', [])
       }
     })
 
-    $urlRouterProvider.otherwise('/login')  // /tab/homePage
+    .state('searchContent', {
+        cache: false,   // to run the ng-init function everytime the page is opened, remove the cache
+        url: '/searchContent',
+        templateUrl: 'templates/searchContent.html',
+         controller: 'homePageCtrl'
+    })
+    
+    
+    $urlRouterProvider.otherwise('/app/homePage')  // /tab/homePage
 
 
 

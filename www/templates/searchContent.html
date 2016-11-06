@@ -1,0 +1,12 @@
+<ion-view title="All Data Contents - Top Of The Stack" id="page5" ng-controller="searchContentCtrl" ng-init="getSearchContent()">
+    <h4>Search by Tag Questions</h4> 
+    <ion-content padding="true" class="has-header">
+       
+        <div class="" > 
+            <div class="item item-text-wrap" ng-repeat="data in stackData.items">
+                {{data.link}}
+            </div>
+        </div>
+        
+    </ion-content>
+</ion-view>

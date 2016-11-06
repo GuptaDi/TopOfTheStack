@@ -1,10 +1,10 @@
 <ion-view title="Top Of The Stack" id="page1" ng-controller="homePageCtrl" ng-init="getTechGraph();getTechGraph2();">
     <ion-content padding="true" class="has-header">
         <div>
-            <form id="homePage-form1" class="list">
+            <form id="homePage-form1" class="list" ng-submit="getSearchByTags()">
                 <label class="item item-input">
                     <i class="icon ion-search placeholder-icon"></i>
-                    <input type="search" placeholder="Search By Tag">
+                    <input type="search" id="searchByTag" ng-model="searchByTag" placeholder="Search By Tag">
                 </label>
             </form>
         </div>
