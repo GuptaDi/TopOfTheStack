@@ -131,7 +131,7 @@ angular.module('app.controllers', [])
     }
 ])
 
-.controller('settingsCtrl', function ($scope, ionicDatePicker) {
+.controller('settingsCtrl',['$scope','ionicDatePicker', function ($scope, ionicDatePicker) {
 
 //     $scope.currentDate = new Date();
 // $scope.minDate = new Date(2105, 6, 1);
@@ -145,37 +145,64 @@ angular.module('app.controllers', [])
 //     }
 // };
 
-$scope.selectedDate1;
-    $scope.selectedDate2;
+$scope.startDateSelected;
+    $scope.endDateSelected;
 
-    $scope.openDatePickerOne = function (val) {
-      var ipObj1 = {
-        callback: function (val) {  //Mandatory
-          console.log('Return value from the datepicker popup is : ' + val, new Date(val));
-          $scope.selectedDate1 = new Date(val);
-        },
-        disabledDates: [
-          new Date(2016, 2, 16),
-          new Date(2015, 3, 16),
-          new Date(2015, 4, 16),
-          new Date(2015, 5, 16),
-          new Date('Wednesday, August 12, 2015'),
-          new Date("08-16-2016"),
-          new Date(1439676000000)
-        ],
-        from: new Date(2012, 1, 1),
-        to: new Date(2018, 10, 30),
-        inputDate: new Date(),
-        mondayFirst: true,
-        disableWeekdays: [],
-        closeOnSelect: false,
-        templateType: 'popup'
-      };
-      ionicDatePicker.openDatePicker(ipObj1);
-    }
-
+     $scope.openDatePickerOne = function (val) {
+        var ipObj1 = {
+          callback: function (val) {  //Mandatory
+            console.log('Return value from the datepicker popup is : ' + val, new Date(val));
+              $scope.startDateSelected = val;
+          },
+          disabledDates: [            //Optional
+            new Date(2016, 2, 16),
+            new Date(2015, 3, 16),
+            new Date(2015, 4, 16),
+            new Date(2015, 5, 16),
+            new Date('Wednesday, August 12, 2015'),
+            new Date("08-16-2016"),
+            new Date(1439676000000)
+          ],
+          from: new Date(2012, 1, 1), //Optional
+          to: new Date(2016, 10, 30), //Optional
+          inputDate: new Date(),      //Optional
+          mondayFirst: true,          //Optional
+          disableWeekdays: [0],       //Optional
+          closeOnSelect: false,       //Optional
+          templateType: 'popup'       //Optional
+        };
+          ionicDatePicker.openDatePicker(ipObj1);
+    };
     
-})
+    $scope.openDatePickerTwo = function (val) {
+                var ipObj2 = {
+              callback: function (val) {  //Mandatory
+                console.log('Return value from the datepicker popup is : ' + val, new Date(val));
+                  $scope.endDateSelected = new Date(val);
+              },
+              disabledDates: [            //Optional
+                new Date(2016, 2, 16),
+                new Date(2015, 3, 16),
+                new Date(2015, 4, 16),
+                new Date(2015, 5, 16),
+                new Date('Wednesday, August 12, 2015'),
+                new Date("08-16-2016"),
+                new Date(1439676000000)
+              ],
+              from: new Date(2012, 1, 1), //Optional
+              to: new Date(2016, 10, 30), //Optional
+              inputDate: new Date(),      //Optional
+              mondayFirst: true,          //Optional
+              disableWeekdays: [0],       //Optional
+              closeOnSelect: false,       //Optional
+              templateType: 'popup'       //Optional
+            };
+
+      ionicDatePicker.openDatePicker(ipObj2);
+      };
+    
+    
+}])
 
 .controller('fbAuthCtrl', ['$scope', '$ionicFacebookAuth', '$ionicUser', '$state', function($scope, $ionicFacebookAuth, $ionicUser, $state) {
     $scope.loginFacebook = function() {
