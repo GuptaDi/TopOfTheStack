@@ -9,44 +9,17 @@ angular.module('app.routes', [])
     $stateProvider
 
     // setup an abstract state for the tabs directive
-        .state('tab', {
-            url: '/tab',
-            abstract: true,
-            templateUrl: 'templates/tabs.html'
-        })
-        .state('menu', {
-            url: '/menuContents',
-            templateUrl: 'templates/menu.html',
-            controller: 'menuCtrl'
-        })
-
-    .state('menu.homePage', {
-        url: '/homePage',
-        views: {
-            'side-menu21': {
-                templateUrl: 'templates/homePage.html',
-                controller: 'homePageCtrl'
-            }
-        }
-    })
-
-    .state('tOP', {
-        url: '/outputData',
-        //views: {
-        //'side-menu21': {
-        templateUrl: 'templates/tOP.html',
-        controller: 'tOPCtrl'
-            //}
-            //}
-    })
-
-
-
-    .state('login', {
-        url: '/loginScreen',
-        templateUrl: 'templates/login.html',
-        controller: 'loginCtrl'
-    })
+       .state('app', {
+    url: "/app",
+    abstract: true,
+    templateUrl: "templates/menu.html",
+    controller: 'AppCtrl'
+  })
+        // .state('menu', {
+        //     url: '/menuContents',
+        //     templateUrl: 'templates/menu.html',
+        //     controller: 'menuCtrl'
+        // })
 
     .state('getStarted', {
         url: '/getStarted',
@@ -54,19 +27,124 @@ angular.module('app.routes', [])
         controller: 'getStartedCtrl'
     })
 
-    .state('allDataContents', {
-        url: '/allDataContents',
-        templateUrl: 'templates/allDataContents.html',
-        controller: 'allDataContentsCtrl'
+
+// .state('tabs.about', {
+//         url: '/about',
+//         templateUrl: 'templates/about.html',
+//         controller: 'aboutCtrl'
+//     })
+ 
+    .state('about', {
+      url: "/about",
+      views: {
+        'about-tab': {
+          templateUrl: "templates/about.html",
+          controller: 'aboutCtrl'
+        }
+      }
+  })
+
+ .state('app.homePage', {
+      url: "/homePage",
+      views: {
+        'tab-homepage': {
+          templateUrl: "templates/homePage.html",
+        }
+      }
+  })
+    // .state('tOP', {
+    //     url: '/outputData',
+    //     //views: {
+    //     //'side-menu21': {
+    //     templateUrl: 'templates/tOP.html',
+    //     controller: 'tOPCtrl'
+    //         //}
+    //         //}
+    // })
+
+
+
+    // .state('login', {
+    //     url: '/loginScreen',
+    //     templateUrl: 'templates/login.html',
+    //     controller: 'loginCtrl'
+    // })
+
+    // .state('getStarted', {
+    //     url: '/getStarted',
+    //     templateUrl: 'templates/getStarted.html',
+    //     controller: 'getStartedCtrl'
+    // })
+
+    // .state('allDataContents', {
+    //     url: '/allDataContents',
+    //     templateUrl: 'templates/allDataContents.html',
+    //     controller: 'allDataContentsCtrl'
+    // })
+
+      .state('app.topList', {
+        url: '/topList',
+        views: {
+        'tab-toplist': {
+          templateUrl: "templates/topList.html",
+        }
+      }
     })
 
-    .state('settings', {
+    .state('app.settings', {
         url: '/settings',
-        templateUrl: 'templates/settings.html',
-        controller: 'settingsCtrl'
+        views: {
+        'tab-settings': {
+          templateUrl: "templates/settings.html",
+          controller: 'settingsCtrl'
+        }
+      }
     })
-    $urlRouterProvider.otherwise('/tab')
+
+    $urlRouterProvider.otherwise('/app/homePage')  // /tab/homePage
 
 
 
 });
+
+
+
+// .state('app', {
+//     url: "/app",
+//     abstract: true,
+//     templateUrl: "templates/menu.html",
+//     controller: 'AppCtrl'
+//   })
+
+//   .state('app.tabs', {
+//     url: "/tabs",
+//     views: {
+//       'menuContent': {
+//         templateUrl: "templates/tabs.html"
+//       }
+//     }
+//   })
+
+// .state('app.tabs.tab1', {
+//       url: '/tab1',
+//       views: {
+//         'tab-tab1': {
+//           templateUrl: 'templates/tab-tab1.html',
+//           controller: 'tab1Ctrl'
+//         }
+//       }
+//     })
+
+
+//     .state('app.about', {
+//       url: "/about",
+//       views: {
+//         'menuContent': {
+//           templateUrl: "templates/about.html",
+//           controller: 'aboutCtrl'
+//         }
+//       }
+//   });
+//   // if none of the above states are matched, use this as the fallback
+//   $urlRouterProvider.otherwise('/app/tabs');
+// });

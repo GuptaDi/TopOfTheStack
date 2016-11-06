@@ -8,6 +8,10 @@
 
 angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives', 'app.services', 'ionic.cloud', 'ionic-datepicker'])
 
+.config(function($ionicConfigProvider) {
+    $ionicConfigProvider.tabs.position('bottom');
+})
+
 .config(function($ionicCloudProvider) {
     $ionicCloudProvider.init({
         "core": {
