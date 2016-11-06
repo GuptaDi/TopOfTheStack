@@ -3,9 +3,20 @@
         <div ng-controller="settingsCtrl">
    
 <div class="card padding">
-      <button class="button button-positive button-block" style="margin: 0;" ng-click="openDatePickerOne()">Open Date Picker Popup
-      </button>
-   
+    <form>
+    <div id="start_date_container">
+    <label for="start_date">Start Date</label>&nbsp;
+    <input type="text" id="start_date" name="start_date" placeholder="dd/mm/yyyy" style="display:inline-block;"  value="{{startDateSelected | date: 'yyyy-MM-dd'}}" ng-readonly="true" />&nbsp<a style="border-radius:10px 10px 10px 10px;display:inline-block;" class="button button-positive button-inline ion-calendar" 
+            ng-click="startDatePicker()"></a>
+    </div>
+    <div id="end_date_container">
+    <label for="end_date">End Date</label>&nbsp;
+    <input type="text" id="end_date" name="end_date" placeholder="dd/mm/yyyy" style="display:inline-block;"  value="{{endDateSelected | date: 'yyyy-MM-dd' }}" ng-readonly="true" />&nbsp
+        <a style="border-radius:10px 10px 10px 10px;display:inline-block;" class="button button-positive button-inline ion-calendar" 
+            ng-click="endDatePicker()"></a>
+    </div>
+    </form>
+            </div>
         </div>
     </ion-content>
 </ion-view>

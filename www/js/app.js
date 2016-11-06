@@ -13,23 +13,34 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
 })
 
 .config(function($ionicCloudProvider) {
+    // $ionicCloudProvider.init({
+    //     "core": {
+    //         "app_id": "f511957c"
+    //     },
+    //     "push": {
+    //         "sender_id": "923688165386",
+    //         "pluginConfig": {
+    //             "ios": {
+    //                 "badge": true,
+    //                 "sound": true
+    //             },
+    //             "android": {
+    //                 "iconColor": "#343434"
+    //             }
+    //         }
+    //     }
+    // });
     $ionicCloudProvider.init({
-        "core": {
-            "app_id": "2c145d19"
-        },
-        "push": {
-            "sender_id": "923688165386",
-            "pluginConfig": {
-                "ios": {
-                    "badge": true,
-                    "sound": true
-                },
-                "android": {
-                    "iconColor": "#343434"
-                }
-            }
-        }
-    });
+  "core": {
+    "app_id": "38a2fe62"
+  },
+  "auth": {
+    "google": {
+      "webClientId": "164249078900-cgpali3ogvduv8rjbr05uj7hghjde1t0.apps.googleusercontent.com",
+      "scope": ["profile", "email"]
+    }
+  }
+});
 })
 
 .run(function($ionicPlatform) {

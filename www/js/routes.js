@@ -64,11 +64,11 @@ angular.module('app.routes', [])
 
 
 
-    // .state('login', {
-    //     url: '/loginScreen',
-    //     templateUrl: 'templates/login.html',
-    //     controller: 'loginCtrl'
-    // })
+    .state('login', {
+        url: '/login',
+        templateUrl: 'templates/login.html',
+        controller: 'loginCtrl'
+    })
 
     // .state('getStarted', {
     //     url: '/getStarted',
@@ -101,7 +101,7 @@ angular.module('app.routes', [])
       }
     })
 
-    $urlRouterProvider.otherwise('/app/homePage')  // /tab/homePage
+    $urlRouterProvider.otherwise('/login')  // /tab/homePage
 
 
 

@@ -54,8 +54,8 @@
         },
         "is_top_level": true,
         "variables": {
-            "APP_ID": "1133177240104177",
-            "APP_NAME": "TopOfTheStack"
+            "APP_ID": "38a2fe62",
+            "APP_NAME": "TOS"
         }
     },
     "cordova-plugin-inappbrowser": {

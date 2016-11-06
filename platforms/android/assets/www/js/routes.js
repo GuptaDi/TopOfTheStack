@@ -64,11 +64,11 @@ angular.module('app.routes', [])
 
 
 
-    // .state('login', {
-    //     url: '/loginScreen',
-    //     templateUrl: 'templates/login.html',
-    //     controller: 'loginCtrl'
-    // })
+    .state('login', {
+        url: '/login',
+        templateUrl: 'templates/login.html',
+        controller: 'loginCtrl'
+    })
 
     // .state('getStarted', {
     //     url: '/getStarted',
@@ -82,12 +82,26 @@ angular.module('app.routes', [])
     //     controller: 'allDataContentsCtrl'
     // })
 
-    // .state('settings', {
-    //     url: '/settings',
-    //     templateUrl: 'templates/settings.html',
-    //     controller: 'settingsCtrl'
-    // })
-    $urlRouterProvider.otherwise('/app/homePage')  // /tab/homePage
+      .state('app.topList', {
+        url: '/topList',
+        views: {
+        'tab-toplist': {
+          templateUrl: "templates/topList.html",
+        }
+      }
+    })
+
+    .state('app.settings', {
+        url: '/settings',
+        views: {
+        'tab-settings': {
+          templateUrl: "templates/settings.html",
+          controller: 'settingsCtrl'
+        }
+      }
+    })
+
+    $urlRouterProvider.otherwise('/login')  // /tab/homePage
 
 
 

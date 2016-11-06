@@ -7,18 +7,18 @@
       </div>
 	    <div class="spacer" style="width: 300px; height: 37px;"></div>
      	 	<div ng-controller="googleAuthCtrl">
-            <a ui-sref="menu.homePage" id="login-button4" style="font-size:18px;border-radius:10px 10px 10px 10px;" class="button button-assertive  button-block icon-left ion-social-googleplus" ng-click="loginGoogle()">Sign in with Google</a>
+            <a id="login-button4" style="font-size:18px;border-radius:10px 10px 10px 10px;" class="button button-assertive  button-block icon-left ion-social-googleplus" ng-click="loginGoogle()">Sign in with Google</a>
             </div>
-<!--
+
             <div ng-controller="fbAuthCtrl">
 
                 <a id="login-button5"  style="border-radius:10px 10px 10px 10px;" class="button button-positive  button-block icon-left ion-social-facebook" 
                     ng-click="loginFacebook()">Sign in with Facebook</a>
--->
-            <div ng-controller="pushNotifiationsCtrl">
-                 <a id="login-button5"  style="border-radius:10px 10px 10px 10px;" class="button button-positive  button-block icon-left ion-social-facebook" 
+                    
+            <!-- <div ng-controller="pushNotifiationsCtrl">
+                 <a  id="login-button5"  style="border-radius:10px 10px 10px 10px;" class="button button-positive  button-block icon-left ion-social-facebook" 
                     ng-click="register()">Sign in with Facebook</a>
-            </div>
+            </div> -->
         </form>
     </ion-content>
 </ion-view>

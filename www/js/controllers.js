@@ -1,6 +1,6 @@
 angular.module('app.controllers', [])
 
-.controller('homePageCtrl', ['$scope', '$stateParams','StackDataFactory', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('homePageCtrl', ['$scope', '$stateParams', 'StackDataFactory', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
     // You can include any angular dependencies as parameters for this function
     // TIP: Access Route Parameters for your page via $stateParams.parameterName
     function($scope, $stateParams, StackDataFactory) {
@@ -70,8 +70,8 @@ angular.module('app.controllers', [])
                 }]
             });
         };
-        
-    
+
+
     }
 ])
 
@@ -115,21 +115,21 @@ angular.module('app.controllers', [])
 ])
 
 .controller('getStartedCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function($scope, $stateParams) {
+        // You can include any angular dependencies as parameters for this function
+        // TIP: Access Route Parameters for your page via $stateParams.parameterName
+        function($scope, $stateParams) {
 
 
-    }
-])
-.controller('aboutCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-    // You can include any angular dependencies as parameters for this function
-    // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function($scope, $stateParams) {
+        }
+    ])
+    .controller('aboutCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+        // You can include any angular dependencies as parameters for this function
+        // TIP: Access Route Parameters for your page via $stateParams.parameterName
+        function($scope, $stateParams) {
 
 
-    }
-])
+        }
+    ])
 
 .controller('settingsCtrl',['$scope','ionicDatePicker','DateSettingService', 
                             function ($scope, ionicDatePicker,DateSettingService) {
@@ -190,29 +190,6 @@ angular.module('app.controllers', [])
       };
 }])
 
-.controller('fbAuthCtrl', ['$scope', '$ionicFacebookAuth', '$ionicUser', '$state', function($scope, $ionicFacebookAuth, $ionicUser, $state) {
-    $scope.loginFacebook = function() {
-        console.log(" Inside FB Auth ");
-        $ionicFacebookAuth.login(["public_profile", "email"]).then(function(success) {
-            console.log(" Facebook login success ");
-            console.log(success);
-            // successfull authentication, redirect to homepage.
-            // menu.homePage route is defined in routes file
-            $state.go('menu.homePage');
-
-        }, function(error) {
-            console.log(" Failed in Facebook Auth");
-            console.log(error);
-            var alertPopup = $ionicPopup.alert({
-                title: 'Login failed!',
-                template: 'Please check your credentials!'
-            });
-        });
-
-    };
-}])
-
-
 .controller('sliderCtrl', ['$scope', '$stateParams', '$ionicSlideBoxDelegate', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
     // You can include any angular dependencies as parameters for this function
     // TIP: Access Route Parameters for your page via $stateParams.parameterName
@@ -229,12 +206,40 @@ angular.module('app.controllers', [])
     }
 ])
 
-.controller('googleAuthCtrl', ['$scope', '$ionicGoogleAuth', '$ionicUser', function($scope, $ionicGoogleAuth, $ionicUser) {
+.controller('fbAuthCtrl', ['$scope', '$ionicFacebookAuth', '$ionicUser', '$state', function($scope, $ionicFacebookAuth, $ionicUser, $state) {
+    console.log(" Inside FB Auth ");
+    $scope.loginFacebook = function() {
+        console.log(" Inside FB Auth ");
+        $ionicFacebookAuth.login().then(function(success) {
+            console.log(" Facebook login success ");
+            console.log(success);
+            // successfull authentication, redirect to homepage.
+            // menu.homePage route is defined in routes file
+            $state.go('app.homePage');
+
+        }, function(error) {
+            console.log(" Failed in Facebook Auth");
+            console.log(error);
+            var alertPopup = $ionicPopup.alert({
+                title: 'Login failed!',
+                template: 'Please check your credentials!'
+            });
+        });
+
+    };
+}])
+
+
+
+
+.controller('googleAuthCtrl', ['$scope', '$ionicGoogleAuth', '$ionicUser','$state', function($scope, $ionicGoogleAuth, $ionicUser, $state) {
     console.log(" Inside Google Auth ");
     $scope.loginGoogle = function() {
         console.log(" Coming in Google ");
         $ionicGoogleAuth.login().then(function(success) {
+            console.log(" success in Google ");
             console.log(success);
+            $state.go('app.homePage');
 
         }, function(error) {
             console.log(" Failed in Google ");
@@ -266,41 +271,41 @@ angular.module('app.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+    // With the new view caching in Ionic, Controllers are only called
+    // when they are recreated or on app start, instead of every page change.
+    // To listen for when this page is active (for example, to refresh data),
+    // listen for the $ionicView.enter event:
+    //$scope.$on('$ionicView.enter', function(e) {
+    //});
 
-  // Form data for the login modal
-  $scope.loginData = {};
+    // Form data for the login modal
+    $scope.loginData = {};
 
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/homepage.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
+    // Create the login modal that we will use later
+    $ionicModal.fromTemplateUrl('templates/homepage.html', {
+        scope: $scope
+    }).then(function(modal) {
+        $scope.modal = modal;
+    });
 
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
+    // Triggered in the login modal to close it
+    $scope.closeLogin = function() {
+        $scope.modal.hide();
+    };
 
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
+    // Open the login modal
+    $scope.login = function() {
+        $scope.modal.show();
+    };
 
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
+    // Perform the login action when the user submits the login form
+    $scope.doLogin = function() {
+        console.log('Doing login', $scope.loginData);
 
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
+        // Simulate a login delay. Remove this and replace with your login
+        // code if using a login system
+        $timeout(function() {
+            $scope.closeLogin();
+        }, 1000);
+    };
 })

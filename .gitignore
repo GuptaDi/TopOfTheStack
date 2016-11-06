@@ -1,2 +1,6 @@
 platforms/android/.gradle/*
 *.lock
+
+.io-config.json
+
+node_modules/@ionic/cloud/dist/bundle/ionic.cloud.min.js
