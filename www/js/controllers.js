@@ -236,14 +236,15 @@ angular.module('app.controllers', [])
     console.log(" Inside FB Auth ");
     $scope.loginFacebook = function() {
         console.log(" Inside FB Auth ");
-        $ionicFacebookAuth.login().then(function(success) {
-            console.log(" Facebook login success ");
-            console.log(success);
-            // successfull authentication, redirect to homepage.
-            // menu.homePage route is defined in routes file
+        $ionicFacebookAuth.login(["public_profile", "email", "user_friends"]).then(function (success) {
+            console.log(success.token);
+            if(!success.authResponse){
+              console.log("Cannot find the authResponse");
+      
+            }
             $state.go('app.homePage');
-
-        }, function(error) {
+    },
+             function(error) {
             console.log(" Failed in Facebook Auth");
             console.log(error);
             var alertPopup = $ionicPopup.alert({
