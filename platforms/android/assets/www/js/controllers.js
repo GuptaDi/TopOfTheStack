@@ -1,10 +1,10 @@
 angular.module('app.controllers', [])
 
 .controller('homePageCtrl', ['$scope', '$stateParams', 'StackDataFactory','SearchByTagDataFactory',
-                             '$state',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+                             '$state','$rootScope','DateSettingService',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
     // You can include any angular dependencies as parameters for this function
     // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function($scope, $stateParams, StackDataFactory,SearchByTagDataFactory,$state) {
+    function($scope, $stateParams, StackDataFactory,SearchByTagDataFactory,$state,$rootScope,DateSettingService) {
         $scope.getTechGraph = function() {
             var n = listnew;
             // Build the chart
@@ -72,24 +72,30 @@ angular.module('app.controllers', [])
             });
         };
         
-        $scope.searchByTag = "c"; // default search value
-        $scope.stackData = "";
+        $scope.searchByTag = ""; // default search value
         $scope.getSearchByTags = function() {
             $scope.searchByTag = this.searchByTag; // get value from form element
-            SearchByTagDataFactory.getSearchTagsData($scope.searchByTag).then(function(response) {
+            DateSettingService.setSearchTagValue(this.searchByTag);
+            $scope.searchByTag = "" // empty the input after search
+        
+            $state.go('searchContent'); // redirect to a new page
+        };
+    }
+])
+
+.controller('searchContentCtrl', ['$scope', '$stateParams', 'StackDataFactory','SearchByTagDataFactory','$rootScope',
+    function($scope, $stateParams, StackDataFactory,SearchByTagDataFactory,$rootScope) {
+        $scope.stackData="";
+        $scope.getSearchContent = function() {
+            SearchByTagDataFactory.getSearchTagsData().then(function(response) {
                 // return response;
                 $scope.stackData = response;
                 console.log($scope.stackData);
-                
-                $scope.searchByTag = "" // empty the input after search
-                //$location.path("/app.searchContent" );
-                //var path = "/app/allDataContents.html";
-//                window.location.href = path;
-                $state.go('app.searchContent');
             },function(errorResponse){
                 console.log(" Error ---");
                 console.log(errorResponse);
             });
+            
         };
 
     }

@@ -5,8 +5,8 @@ angular.module('app.services', [])
 .service('DateSettingService',function(){
     var startDate = "";
     var endDate = "";
-    var keyUrl = "&key=egA029dyJ24Auv0bm5y0Ug((&access_token=mc0nqVUDJdRgV5ePheyS4Q))";    
-            
+    var searchTagVal = "c"; // default value
+    
     // set date ---------
        this.setStartDate = function (){
             this.startDate = "";
@@ -25,7 +25,13 @@ angular.module('app.services', [])
         this.getKeyUrl = function(){
             return keyUrl;
         }
-
+        this.setSearchTagValue = function(tagVal){
+           searchTagVal = tagVal; 
+        }
+        this.getSearchTagValue = function(){
+           return searchTagVal;
+        }
+        
         // initialize date
         this.setStartDate();
         this.setEndDate();
@@ -99,14 +105,14 @@ angular.module('app.services', [])
 
 .factory('SearchByTagDataFactory', ['$http','DateSettingService', function($http,DateSettingService) {
     var keyUrl = DateSettingService.getKeyUrl();
-    console.log(" Tag value received ------ ");
-    
+   
     var tagsData = {
-        getSearchTagsData: function(searchVal) {
+        getSearchTagsData: function() {
+            var searchVal = DateSettingService.getSearchTagValue();
             // prepare url 
             var stackCallUrl = "https://api.stackexchange.com/2.2/tags/";
             var tagValue= searchVal;
-            var apiUrl = "/top-answerers/all_time?site=stackoverflow";
+            var apiUrl = "/faq?site=stackoverflow";
             stackCallUrl += tagValue + apiUrl;
             stackCallUrl += keyUrl;
             console.log(" User entered Search Tag Url ---");

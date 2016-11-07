@@ -101,13 +101,11 @@ angular.module('app.routes', [])
       }
     })
 
-    .state('app.searchContent', {
+    .state('searchContent', {
+        cache: false,   // to run the ng-init function everytime the page is opened, remove the cache
         url: '/searchContent',
-        views: {
-            'tab-posts': {
-            templateUrl: 'templates/searchContent.html',
-            }
-        }
+        templateUrl: 'templates/searchContent.html',
+         controller: 'homePageCtrl'
     })
     
     

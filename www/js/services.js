@@ -6,6 +6,7 @@ angular.module('app.services', [])
     var startDate = "";
     var endDate = "";
     var searchTagVal = "c"; // default value
+    var keyUrl = "&key=egA029dyJ24Auv0bm5y0Ug((&access_token=mc0nqVUDJdRgV5ePheyS4Q))";  
     
     // set date ---------
        this.setStartDate = function (){
