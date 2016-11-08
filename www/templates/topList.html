@@ -4,9 +4,9 @@
             Most discussed questions on stack overflow
         </div>
         <div class="list card" >
-            <div class="item item-text-wrap" ng-repeat="data in stackData.items">
+            <a href="{{data.link}}" class="item item-text-wrap" ng-repeat="data in stackData.items">
                 {{data.title}}
-            </div>
+            </a>
         </div>
     </ion-content>
 </ion-view>

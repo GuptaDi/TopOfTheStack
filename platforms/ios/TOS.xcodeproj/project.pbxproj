@@ -15,7 +15,6 @@
 		3047A5121AB8059700498E2A /* build-debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3047A50F1AB8059700498E2A /* build-debug.xcconfig */; };
 		3047A5131AB8059700498E2A /* build-release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3047A5101AB8059700498E2A /* build-release.xcconfig */; };
 		3047A5141AB8059700498E2A /* build.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3047A5111AB8059700498E2A /* build.xcconfig */; };
-		1BA218835A1947D69BF4460B /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A34E3BFCD544A27A6CD1299 /* CDVLogger.m */; };
 		D8063829545A471BB3308D92 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = D1252AF467E74E9D89A83736 /* CDVDevice.m */; };
 		C5B03FE1DB1749BC8E0B5AEC /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D8700E458745D9ADFF6911 /* CDVSplashScreen.m */; };
 		1BBD5F52BE2A4F9DABBA080D /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5A22B9B86643F9B7ACE66A /* CDVViewController+SplashScreen.m */; };
@@ -71,6 +70,7 @@
 		D0006422F184461F832A624E /* libGcmLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 617F675EC3194D86B63AB471 /* libGcmLib.a */; };
 		F4C9567CCACD4912B6312380 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7E9A7BED6F74493A1CC5BC7 /* libProtocolBuffers.a */; };
 		0048106150F34886959BB4E7 /* libsqlite3.tbd in Resources */ = {isa = PBXBuildFile; fileRef = 215D61C33E9C49FDAD38E5BF /* libsqlite3.tbd */; };
+		E049C47AACA6439182EC11FD /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = BE33500B97D14C8CA264A1A0 /* CDVLogger.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,8 +110,6 @@
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "TOS/config.xml"; sourceTree = "<group>"; };
 		ED33DF2A687741AEAF9F8254 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "Bridging-Header.h"; sourceTree = "<group>"; };
-		7A34E3BFCD544A27A6CD1299 /* CDVLogger.m */ = {isa = PBXFileReference; name = "CDVLogger.m"; path = "cordova-plugin-console/CDVLogger.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
-		490C98D347C2482BA2CB71F5 /* CDVLogger.h */ = {isa = PBXFileReference; name = "CDVLogger.h"; path = "cordova-plugin-console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		D1252AF467E74E9D89A83736 /* CDVDevice.m */ = {isa = PBXFileReference; name = "CDVDevice.m"; path = "cordova-plugin-device/CDVDevice.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		19D311284C544AB59FF07494 /* CDVDevice.h */ = {isa = PBXFileReference; name = "CDVDevice.h"; path = "cordova-plugin-device/CDVDevice.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		08D8700E458745D9ADFF6911 /* CDVSplashScreen.m */ = {isa = PBXFileReference; name = "CDVSplashScreen.m"; path = "cordova-plugin-splashscreen/CDVSplashScreen.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
@@ -192,6 +190,8 @@
 		23A157AE30BD4E38808CB335 /* GCMService.h */ = {isa = PBXFileReference; name = "GCMService.h"; path = "phonegap-plugin-push/GCM/Headers/GCMService.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		1F14CF81D89640D8BA5BCF90 /* GoogleCloudMessaging.h */ = {isa = PBXFileReference; name = "GoogleCloudMessaging.h"; path = "phonegap-plugin-push/GCM/Headers/GoogleCloudMessaging.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		215D61C33E9C49FDAD38E5BF /* libsqlite3.tbd */ = {isa = PBXFileReference; name = "libsqlite3.tbd"; path = "libsqlite3.tbd"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BE33500B97D14C8CA264A1A0 /* CDVLogger.m */ = {isa = PBXFileReference; name = "CDVLogger.m"; path = "cordova-plugin-console/CDVLogger.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		976FF6FB37B245CD9294EB85 /* CDVLogger.h */ = {isa = PBXFileReference; name = "CDVLogger.h"; path = "cordova-plugin-console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -383,8 +383,6 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				7A34E3BFCD544A27A6CD1299 /* CDVLogger.m */,
-				490C98D347C2482BA2CB71F5 /* CDVLogger.h */,
 				D1252AF467E74E9D89A83736 /* CDVDevice.m */,
 				19D311284C544AB59FF07494 /* CDVDevice.h */,
 				08D8700E458745D9ADFF6911 /* CDVSplashScreen.m */,
@@ -420,6 +418,8 @@
 				60BCB362A80D4EAC83F8E4E4 /* GCMReceiverDelegate.h */,
 				23A157AE30BD4E38808CB335 /* GCMService.h */,
 				1F14CF81D89640D8BA5BCF90 /* GoogleCloudMessaging.h */,
+				BE33500B97D14C8CA264A1A0 /* CDVLogger.m */,
+				976FF6FB37B245CD9294EB85 /* CDVLogger.h */,
 			);
 			name = Plugins;
 			path = "TOS/Plugins";
@@ -535,7 +535,6 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
-				1BA218835A1947D69BF4460B /* CDVLogger.m in Sources */,
 				D8063829545A471BB3308D92 /* CDVDevice.m in Sources */,
 				C5B03FE1DB1749BC8E0B5AEC /* CDVSplashScreen.m in Sources */,
 				1BBD5F52BE2A4F9DABBA080D /* CDVViewController+SplashScreen.m in Sources */,
@@ -546,6 +545,7 @@
 				623A3617128445EE8A9502FC /* GooglePlus.m in Sources */,
 				F793D9F7AA67449EAFE2AEB1 /* AppDelegate+notification.m in Sources */,
 				CCC4DFFA95A64B6EAA23BDA2 /* PushPlugin.m in Sources */,
+				E049C47AACA6439182EC11FD /* CDVLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

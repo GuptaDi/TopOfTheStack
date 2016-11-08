@@ -9,6 +9,8 @@
     
     <script src="lib/bluebird.min.js"></script>
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/bower_components/ionic-datepicker/dist/ionic-datepicker.bundle.min.js"></script>
+   
     <script src="lib/ionic.cloud.min.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
@@ -18,9 +20,9 @@
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
-
-    
     <link href="css/ionic.app.css" rel="stylesheet">
+   
+    
     
 
     <style type="text/css">
@@ -42,7 +44,9 @@
         border-left:0px;
         border-right: 0px;
       }
-        
+        .card{
+            margin:15px 10px;
+        }
         /* Code for slider */
         .slider{
             height:100%;
@@ -83,6 +87,18 @@
     <!-- Only required for Tab projects w/ pages in multiple tabs 
     <script src="lib/ionicuirouter/ionicUIRouter.js"></script>
     -->
+
+   <!--  <script>
+            document.onclick = function (e) {
+                e = e ||  window.event;
+                var element = e.target || e.srcElement;
+ 
+                if (element.tagName == 'A') {
+                    window.open(element.href, "_blank", "location=yes");
+                    return false; // prevent default action and stop event propagation
+                }
+            };
+        </script> -->
 
   </head>
   <body ng-app="app" animation="slide-left-right-ios7">

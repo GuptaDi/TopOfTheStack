@@ -6,8 +6,9 @@ angular.module('app.services', [])
     var startDate = "";
     var endDate = "";
     var searchTagVal = "c"; // default value
-    var keyUrl = "&key=egA029dyJ24Auv0bm5y0Ug((&access_token=mc0nqVUDJdRgV5ePheyS4Q))";  
-    
+    var keyUrl = "&key=egA029dyJ24Auv0bm5y0Ug((&access_token=mc0nqVUDJdRgV5ePheyS4Q))"; 
+    var username = ''; 
+    var profilePic = '';
     // set date ---------
        this.setStartDate = function (){
             this.startDate = "";
@@ -32,7 +33,18 @@ angular.module('app.services', [])
         this.getSearchTagValue = function(){
            return searchTagVal;
         }
-        
+        this.setUserName = function(userName){
+            username = userName;
+        }
+        this.getUserName = function(){
+            return username;
+        }
+        this.setProfilePic = function(image){
+            profilePic = image;
+        }
+        this.getProfilePic = function(){
+            return profilePic;
+        }
         // initialize date
         this.setStartDate();
         this.setEndDate();

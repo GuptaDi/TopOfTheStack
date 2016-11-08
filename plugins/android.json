@@ -7,9 +7,6 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.ionicframework.tos688408"
-        },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.tos688408"
         },
@@ -38,6 +35,9 @@
         },
         "phonegap-plugin-push": {
             "SENDER_ID": "923688165386",
+            "PACKAGE_NAME": "com.ionicframework.tos688408"
+        },
+        "cordova-plugin-console": {
             "PACKAGE_NAME": "com.ionicframework.tos688408"
         }
     },

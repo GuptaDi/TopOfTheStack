@@ -122,11 +122,12 @@ angular.module('app.controllers', [])
     }
 ])
 
-.controller('menuCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('menuCtrl', ['$scope', '$stateParams','DateSettingService', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
     // You can include any angular dependencies as parameters for this function
     // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function($scope, $stateParams) {
-
+    function($scope, $stateParams,DateSettingService) {
+        $scope.userName = DateSettingService.getUserName();
+        $scope.profilePic = DateSettingService.getProfilePic();
 
     }
 ])
@@ -232,16 +233,18 @@ angular.module('app.controllers', [])
     }
 ])
 
-.controller('fbAuthCtrl', ['$scope', '$ionicFacebookAuth', '$ionicUser', '$state', function($scope, $ionicFacebookAuth, $ionicUser, $state) {
+.controller('fbAuthCtrl', ['$scope', '$ionicFacebookAuth', '$ionicUser', '$state', '$ionicUser','DateSettingService',
+    function($scope, $ionicFacebookAuth, $ionicUser, $state, $ionicUser,DateSettingService) {
     console.log(" Inside FB Auth ");
     $scope.loginFacebook = function() {
         console.log(" Inside FB Auth ");
         $ionicFacebookAuth.login(["public_profile", "email", "user_friends"]).then(function (success) {
             console.log(success.token);
-            if(!success.authResponse){
-              console.log("Cannot find the authResponse");
-      
-            }
+             var full_name = $ionicUser.social.facebook.data.full_name;
+             DateSettingService.setUserName($ionicUser.social.facebook.data.full_name);
+             var profile_picture = $ionicUser.social.facebook.data.profile_picture;
+             DateSettingService.setProfilePic($ionicUser.social.facebook.data.profile_picture);
+             // console.log(full_name);
             $state.go('app.homePage');
     },
              function(error) {

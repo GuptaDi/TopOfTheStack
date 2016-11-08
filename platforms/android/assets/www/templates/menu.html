@@ -89,32 +89,33 @@
   </ion-side-menu-content>
 
    <!-- Side Menu (left) -->
-  <ion-side-menu side="left">
+  <ion-side-menu side="left" ng-controller="menuCtrl">
     <ion-content padding="false" style="top:0px !important;" class="side-menu-left side-menu-gradient">
     <div class="spacer" style="width: 268px; height: 39px;"></div>
             <div class="profile-image">
                 <a style="display:block;" ui-sref="menu.homePage" menu-close="">
-                        <img src="img/UTYKyoy0TZCACG6kHDy3_s2.png" width="40%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                        <img ng-src="{{profilePic}}" width="20%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
                 </a>
             </div>
             
-            <h3 id="menu-heading1" style="color:#FFFFFF;font-weight:300;text-align:center;">Divya Gupta</h3>
+            <h4 id="menu-heading1" style="color:#FFFFFF;font-weight:300;text-align:center;">{{userName}}</h4>
             <div class="spacer" style="width: 268px; height: 28px;"></div>
             
-      <ion-list>
+      <!-- ion-list>
         <ion-item menu-close href="#/app/search">
-<!--          Login-->
+        Login-
         </ion-item>
         <ion-item menu-close href="#/app/search">
-<!--          Search-->
+         Search
         </ion-item>
         <ion-item menu-close href="#/app/browse">
-<!--          Browse-->
+         Browse
         </ion-item>
         <ion-item menu-close href="#/app/playlists">
-<!--          Playlists-->
+         Playlists
         </ion-item>
-      </ion-list>
+      </ion-list> -->
+      
     </ion-content>
   </ion-side-menu>
 </ion-side-menus>
