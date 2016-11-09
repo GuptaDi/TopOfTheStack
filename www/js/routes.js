@@ -109,7 +109,7 @@ angular.module('app.routes', [])
     })
     
     
-    $urlRouterProvider.otherwise('/login')  // /tab/homePage
+    $urlRouterProvider.otherwise('/app/homePage')  // /tab/homePage
 
 
 
