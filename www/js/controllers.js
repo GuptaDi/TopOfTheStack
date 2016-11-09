@@ -40,31 +40,31 @@ angular.module('app.controllers', [])
         };
 
         $scope.getTechGraph2 = function() {
-            
-        google.charts.load('upcoming', { 'packages': ['geochart'] });
-                google.charts.setOnLoadCallback(drawRegionsMap);
 
-                function drawRegionsMap() {
+            google.charts.load('upcoming', { 'packages': ['geochart'] });
+            google.charts.setOnLoadCallback(drawRegionsMap);
 
-                    var data = google.visualization.arrayToDataTable([
-                        ['Country', 'Popularity'],
-                        ['Germany', 200],
-                        ['United States', 300],
-                        ['Brazil', 400],
-                        ['Canada', 500],
-                        ['France', 600],
-                        ['RU', 700],
-                        ['India', 700],
-                        ['India', 700],
+            function drawRegionsMap() {
 
-                    ]);
+                var data = google.visualization.arrayToDataTable([
+                    ['Country', 'Popularity'],
+                    ['Germany', 200],
+                    ['United States', 300],
+                    ['Brazil', 400],
+                    ['Canada', 500],
+                    ['France', 600],
+                    ['RU', 700],
+                    ['India', 700],
+                    ['India', 700],
 
-                    var options = {};
+                ]);
 
-                    var chart = new google.visualization.GeoChart(document.getElementById('graphcontainer2'));
+                var options = {};
 
-                    chart.draw(data, options);
-                }
+                var chart = new google.visualization.GeoChart(document.getElementById('graphcontainer2'));
+
+                chart.draw(data, options);
+            }
         };
 
         $scope.searchByTag = ""; // default search value
@@ -96,8 +96,8 @@ angular.module('app.controllers', [])
     }
 ])
 
-.controller('allDataContentsCtrl', ['$scope', '$stateParams', 'StackDataFactory',
-    function($scope, $stateParams, StackDataFactory) {
+.controller('allDataContentsCtrl', ['$rootScope', "$scope", "$stateParams", "$q", "$location", "$window", '$timeout', 'StackDataFactory',
+    function($rootScope, $scope, $stateParams, $q, $location, $window, $timeout, StackDataFactory) {
         $scope.getStackN = function() {
             StackDataFactory.getStackData().then(function(response) {
                 // return response;
@@ -105,8 +105,25 @@ angular.module('app.controllers', [])
                 console.log($scope.stackData);
             });
         }
+        $scope.onSlideMove = function(data) {
+            //alert("You have selected " + data.index + " tab");
+        };
     }
 ])
+
+
+// .controller('testCtrl', ['$rootScope', "$scope", "$stateParams", "$q", "$location", "$window", '$timeout', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+//     // You can include any angular dependencies as parameters for this function
+//     // TIP: Access Route Parameters for your page via $stateParams.parameterName
+//     function($rootScope, $scope, $stateParams, $q, $location, $window, $timeout) {
+//         $scope.onSlideMove = function(data){
+//                 //alert("You have selected " + data.index + " tab");
+//             };
+
+//     }
+// ])
+
+
 
 .controller('tOPCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
     // You can include any angular dependencies as parameters for this function
@@ -116,6 +133,15 @@ angular.module('app.controllers', [])
 
     }
 ])
+
+
+// app.controller("IndexCtrl", ['$rootScope', "$scope", "$stateParams", "$q", "$location", "$window", '$timeout', 
+//             function($rootScope, $scope, $stateParams, $q, $location, $window, $timeout){
+//             $scope.onSlideMove = function(data){
+//                 alert("You have selected " + data.index + " tab");
+//             };
+//         }
+
 
 .controller('menuCtrl', ['$scope', '$stateParams', 'DateSettingService', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
     // You can include any angular dependencies as parameters for this function
@@ -266,6 +292,13 @@ angular.module('app.controllers', [])
         $ionicGoogleAuth.login().then(function(success) {
             console.log(" success in Google ");
             console.log(success);
+
+            var full_name = $ionicUser.social.google.data.full_name
+            DateSettingService.setUserName($ionicUser.social.facebook.data.full_name);
+            var profile_picture = $ionicUser.social.google.data.profile_picture
+            DateSettingService.setProfilePic($ionicUser.social.facebook.data.profile_picture);
+
+
             $state.go('app.homePage');
 
         }, function(error) {

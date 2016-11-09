@@ -51,57 +51,42 @@
         </ion-tab>
 
       </ion-tabs>
-    </script> --> -->
-
-
-
-
-
-    <ion-side-menus enable-menu-with-back-views="false">
-  <ion-side-menu-content>
-    <ion-nav-bar class="bar-positive">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
-
-      <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
-        </button>
-      </ion-nav-buttons>
-    </ion-nav-bar>
-
-    <!-- TABS -->
-    <ion-tabs class="tabs-positive">
-
-      <ion-tab title="Graph" icon-off="ion-pie-graph" icon-on="ion-pie-graph" ui-sref="app.homePage">
-        <ion-nav-view name="tab-homepage"></ion-nav-view>
-      </ion-tab>
-
-      <ion-tab title="Browse" icon-off="ion-ios-glasses" icon-on="ion-ios-glasses" ui-sref="app.topList">
-        <ion-nav-view name="tab-toplist"></ion-nav-view>
-      </ion-tab>
-
-      <ion-tab title="Settings" icon-off="ion-settings" icon-on="ion-settings" ui-sref="app.settings">
-        <ion-nav-view name="tab-settings"></ion-nav-view>
-      </ion-tab>
-
-    </ion-tabs>
-
-  </ion-side-menu-content>
-
-   <!-- Side Menu (left) -->
-  <ion-side-menu side="left" ng-controller="menuCtrl">
-    <ion-content padding="false" style="top:0px !important;" class="side-menu-left side-menu-gradient">
-    <div class="spacer" style="width: 268px; height: 39px;"></div>
+    </script> -->-->
+<ion-side-menus enable-menu-with-back-views="false">
+    <ion-side-menu-content>
+        <ion-nav-bar class="bar-positive">
+            <ion-nav-back-button>
+            </ion-nav-back-button>
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+                </button>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+        <!-- TABS -->
+        <ion-tabs class="tabs-positive">
+            <ion-tab title="Graph" icon-off="ion-pie-graph" icon-on="ion-pie-graph" ui-sref="app.homePage">
+                <ion-nav-view name="tab-homepage"></ion-nav-view>
+            </ion-tab>
+            <ion-tab title="Browse" icon-off="ion-ios-glasses" icon-on="ion-ios-glasses" ui-sref="app.topList">
+                <ion-nav-view name="tab-toplist"></ion-nav-view>
+            </ion-tab>
+            <ion-tab title="Settings" icon-off="ion-settings" icon-on="ion-settings" ui-sref="app.settings">
+                <ion-nav-view name="tab-settings"></ion-nav-view>
+            </ion-tab>
+        </ion-tabs>
+    </ion-side-menu-content>
+    <!-- Side Menu (left) -->
+    <ion-side-menu side="left" ng-controller="menuCtrl">
+        <ion-content padding="false" style="top:0px !important;" class="side-menu-left side-menu-gradient">
+            <div class="spacer" style="width: 268px; height: 39px;"></div>
             <div class="profile-image">
                 <a style="display:block;" ui-sref="menu.homePage" menu-close="">
-                        <img ng-src="{{profilePic}}" width="20%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+                    <img ng-src="{{profilePic}}" width="20%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
                 </a>
             </div>
-            
             <h4 id="menu-heading1" style="color:#FFFFFF;font-weight:300;text-align:center;">{{userName}}</h4>
             <div class="spacer" style="width: 268px; height: 28px;"></div>
-            
-      <!-- ion-list>
+            <!-- ion-list>
         <ion-item menu-close href="#/app/search">
         Login-
         </ion-item>
@@ -115,7 +100,6 @@
          Playlists
         </ion-item>
       </ion-list> -->
-      
-    </ion-content>
-  </ion-side-menu>
+        </ion-content>
+    </ion-side-menu>
 </ion-side-menus>

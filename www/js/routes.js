@@ -9,12 +9,12 @@ angular.module('app.routes', [])
     $stateProvider
 
     // setup an abstract state for the tabs directive
-       .state('app', {
-    url: "/app",
-    abstract: true,
-    templateUrl: "templates/menu.html",
-    controller: 'AppCtrl'
-  })
+        .state('app', {
+            url: "/app",
+            abstract: true,
+            templateUrl: "templates/menu.html",
+            controller: 'AppCtrl'
+        })
         // .state('menu', {
         //     url: '/menuContents',
         //     templateUrl: 'templates/menu.html',
@@ -28,39 +28,39 @@ angular.module('app.routes', [])
     })
 
 
-// .state('tabs.about', {
-//         url: '/about',
-//         templateUrl: 'templates/about.html',
-//         controller: 'aboutCtrl'
-//     })
- 
-    .state('about', {
-      url: "/about",
-      views: {
-        'about-tab': {
-          templateUrl: "templates/about.html",
-          controller: 'aboutCtrl'
-        }
-      }
-  })
+    // .state('tabs.about', {
+    //         url: '/about',
+    //         templateUrl: 'templates/about.html',
+    //         controller: 'aboutCtrl'
+    //     })
 
- .state('app.homePage', {
-      url: "/homePage",
-      views: {
-        'tab-homepage': {
-          templateUrl: "templates/homePage.html",
+    .state('about', {
+        url: "/about",
+        views: {
+            'about-tab': {
+                templateUrl: "templates/about.html",
+                controller: 'aboutCtrl'
+            }
         }
-      }
-  })
-    // .state('tOP', {
-    //     url: '/outputData',
-    //     //views: {
-    //     //'side-menu21': {
-    //     templateUrl: 'templates/tOP.html',
-    //     controller: 'tOPCtrl'
-    //         //}
-    //         //}
-    // })
+    })
+
+    .state('app.homePage', {
+            url: "/homePage",
+            views: {
+                'tab-homepage': {
+                    templateUrl: "templates/homePage.html",
+                }
+            }
+        })
+        // .state('tOP', {
+        //     url: '/outputData',
+        //     //views: {
+        //     //'side-menu21': {
+        //     templateUrl: 'templates/tOP.html',
+        //     controller: 'tOPCtrl'
+        //         //}
+        //         //}
+        // })
 
 
 
@@ -69,6 +69,13 @@ angular.module('app.routes', [])
         templateUrl: 'templates/login.html',
         controller: 'loginCtrl'
     })
+
+
+    //  .state('test', {
+    //     url: '/test',
+    //     templateUrl: 'templates/test.html',
+    //     controller: 'testCtrl'
+    // })
 
     // .state('getStarted', {
     //     url: '/getStarted',
@@ -94,22 +101,22 @@ angular.module('app.routes', [])
     .state('app.settings', {
         url: '/settings',
         views: {
-        'tab-settings': {
-          templateUrl: "templates/settings.html",
-          controller: 'settingsCtrl'
+            'tab-settings': {
+                templateUrl: "templates/settings.html",
+                controller: 'settingsCtrl'
+            }
         }
-      }
     })
 
     .state('searchContent', {
-        cache: false,   // to run the ng-init function everytime the page is opened, remove the cache
+        cache: false, // to run the ng-init function everytime the page is opened, remove the cache
         url: '/searchContent',
         templateUrl: 'templates/searchContent.html',
-         controller: 'homePageCtrl'
+        controller: 'homePageCtrl'
     })
-    
-    
-    $urlRouterProvider.otherwise('/app/homePage')  // /tab/homePage
+
+
+    $urlRouterProvider.otherwise('/login') // /app/homePage
 
 
 

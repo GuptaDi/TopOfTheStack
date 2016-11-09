@@ -6,7 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 
-angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives', 'app.services', 'ionic.cloud', 'ionic-datepicker'])
+angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives', 'app.services', 'ionic.cloud', 'ionic-datepicker','tabSlideBox'])
 
 .config(function($ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom');
@@ -59,6 +59,41 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
         }
     });
 })
+
+.run(['$q', '$http', '$rootScope', '$location', '$window', '$timeout', 
+                    function($q, $http, $rootScope, $location, $window, $timeout){
+        
+            $rootScope.$on("$locationChangeStart", function(event, next, current){
+                $rootScope.error = null;
+                console.log("Route change!!!", $location.path());
+                var path = $location.path();
+                
+                
+                console.log("App Loaded!!!");
+            });
+        }])
+
+
+
+
+ angular.module('slidebox', ['ionic', 'tabSlideBox'])
+        .run(['$q', '$http', '$rootScope', '$location', '$window', '$timeout', 
+                    function($q, $http, $rootScope, $location, $window, $timeout){
+        
+            $rootScope.$on("$locationChangeStart", function(event, next, current){
+                $rootScope.error = null;
+                console.log("Route change!!!", $location.path());
+                var path = $location.path();
+                
+                
+                console.log("App Loaded!!!");
+            });
+        }
+        ]);
+
+
+
+
 
 listnew = [{ name: 'javascript', y: 37 }, { name: 'java', y: 30 }, { name: 'android', y: 24 },
     { name: 'php', y: 23 }, { name: 'python', y: 22 }, { name: 'c# ', y: 21 },
