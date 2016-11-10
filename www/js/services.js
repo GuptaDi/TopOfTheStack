@@ -97,6 +97,53 @@ angular.module('app.services', [])
     
     return stackD;
 }])
+.factory('StackDataFactory2', ['$http','DateSettingService', function($http,DateSettingService) {
+    //  var stackCallUrl = "http://54.213.200.141:8080/Raml/rest/userquestions/23";
+  //  var stackCallUrl = "http://api.stackexchange.com/2.2/questions?order=desc&sort=activity&site=stackoverflow";
+    var fromDate = DateSettingService.getStartDate();
+    var toDate = DateSettingService.getEndDate();
+    var stackCallUrl = "https://api.stackexchange.com/2.2/questions?";
+    var fromDateParam = "fromdate = "+ fromDate;
+    var toDateParam = "todate="+ toDate;
+    var paramSet = false;
+    var endUrl = "order=desc&sort=activity&site=stackoverflow";
+    var keyUrl = DateSettingService.getKeyUrl();
+    if(fromDate && toDate){
+        stackCallUrl+= fromDateParam +"&"+toDateParam;
+        paramSet = true;
+    }else{
+        if(fromDate){
+            stackCallUrl+= fromDateParam;
+            paramSet = true;
+        }
+        if(toDate){
+           stackCallUrl += toDateParam;
+            paramSet = true;
+        }
+    }
+    if(paramSet){
+        stackCallUrl += "&"+endUrl;
+    }else{
+        stackCallUrl += endUrl;
+    }
+    stackCallUrl += keyUrl;
+    console.log(stackCallUrl);
+    var stackD = {
+        getStackData: function() {
+            var allStackData = {};
+            return $http({
+                method: 'GET',
+                url: stackCallUrl,
+            }).then(function(response) {
+                // success . Do something with response
+                //    console.log(response.data);
+                return response.data;
+            });
+        }
+    }
+    
+    return stackD;
+}])
 //.factory('TagsDataFactory', ['$http', function($http) {
 //    var stackCallUrl = "http://api.stackexchange.com/2.2/tags?fromdate=1477958400&todate=1477958400&order=desc&sort=popular&site=stackoverflow";
 //    var tagsData = {

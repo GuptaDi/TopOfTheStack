@@ -1,11 +1,11 @@
-<ion-view title="Top Of The Stack" id="page5" ng-controller="allDataContentsCtrl" ng-init="getStackN()">
+<ion-view title="Top Of The Stack" id="page5" ng-controller="allDataContentsCtrl">
     <ion-content scroll="false">
         <tab-slide-box>
             <div class="tsb-icons">
                 <div class="tsb-ic-wrp">
                     <ion-scroll direction="x" class="tsb-hscroll">
-                        <a href="javascript:;" class="ion-home1">Home</a>
-                        <a href="javascript:;" class="ion-ios-game-controller-b1">Games</a>
+                        <a href="javascript:;" ng-click="getStackN()" class="ion-home1">Home</a>
+                        <a href="javascript:;" ng-click="getDetails2()" class="ion-ios-game-controller-b1">Games</a>
                         <a href="javascript:;" class="ion-email1">Email</a>
                         <a href="javascript:;" class="ion-model-s1">Car</a>
                         <a href="javascript:;" class="ion-person1">Profile</a>
@@ -17,7 +17,7 @@
                     </ion-scroll>
                 </div>
             </div>
-            <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">
+            <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)" >
                 <ion-slide>
                     <h3>Home content</h3>
                     <div style="color: white; font-weight: bold; font-size: 19px;">
@@ -25,12 +25,21 @@
                     </div>
                     <div class="list card">
                         <a href="{{data.link}}" class="item item-text-wrap" ng-repeat="data in stackData.items">
-                {{data.title}}
-            </a>
+                            {{data.title}}
+                        </a>
                     </div>
                 </ion-slide>
+                
                 <ion-slide>
                     <h3>Games content</h3>
+                    <div style="color: white; font-weight: bold; font-size: 19px;">
+                        Most discussed questions on stack overflow
+                    </div>
+                    <div class="list card">
+                        <a href="{{data.link}}" class="item item-text-wrap" ng-repeat="data in stackData2.items">
+                            {{data.link}}
+                        </a>
+                    </div>
                 </ion-slide>
                 <ion-slide>
                     <h3>Mail content</h3>
