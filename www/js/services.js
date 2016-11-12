@@ -206,6 +206,27 @@ angular.module('app.services', [])
 
 }])
 
+.factory('InfoFactory', ['$http', 'DateSettingService', function($http, DateSettingService) {
+    var keyUrl = DateSettingService.getKeyUrl();
+    var stackCallUrl = "https://api.stackexchange.com/2.2/info?site=stackoverflow";
+                   
+    var stackD = {
+            getLiveInfo: function() {
+                var allStackData = {};
+                return $http({
+                    method: 'GET',
+                    url: stackCallUrl,
+                }).then(function(response) {
+                    // success . Do something with response
+                    //    console.log(response.data);
+                    return response.data;
+                });
+            }
+        }
+
+        return stackD;
+    }])
+
 .factory('UserLocationFactory', ['$http', 'DateSettingService', function($http, DateSettingService) {
     var keyUrl = DateSettingService.getKeyUrl();
 

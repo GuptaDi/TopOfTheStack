@@ -1,0 +1,7 @@
+{
+    "jscodehints.detectedExclusions": [
+        "/Volumes/BDrive/GIT/TopOfTheStack/www/lib/bower_components/ionic-datepicker/src/ionic-datepicker.service.js",
+        "/Volumes/BDrive/GIT/TopOfTheStack/www/lib/bower_components/ionic-datepicker/src/ionic-datepicker.provider.js",
+        "/Volumes/BDrive/GIT/TopOfTheStack/www/js/services.js"
+    ]
+}

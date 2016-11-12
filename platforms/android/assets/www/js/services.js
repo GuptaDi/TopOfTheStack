@@ -55,55 +55,55 @@ angular.module('app.services', [])
 // Its a users questions factory. Here based on the tab click, we are passing the end url. 
 // End url further appends to form a final url. 
 .factory('StackDataFactory', ['$http', 'DateSettingService', function($http, DateSettingService) {
-        //  var stackCallUrl = "http://54.213.200.141:8080/Raml/rest/userquestions/23";
-        //  var stackCallUrl = "http://api.stackexchange.com/2.2/questions?order=desc&sort=activity&site=stackoverflow";
-        var fromDate = DateSettingService.getStartDate();
-        var toDate = DateSettingService.getEndDate();
-        var stackCallUrl = "https://api.stackexchange.com/2.2/questions?";
-        var fromDateParam = "fromdate = " + fromDate;
-        var toDateParam = "todate=" + toDate;
-        var paramSet = false;
-        var keyUrl = DateSettingService.getKeyUrl();
-        if (fromDate && toDate) {
-            stackCallUrl += fromDateParam + "&" + toDateParam;
+    //  var stackCallUrl = "http://54.213.200.141:8080/Raml/rest/userquestions/23";
+    //  var stackCallUrl = "http://api.stackexchange.com/2.2/questions?order=desc&sort=activity&site=stackoverflow";
+    var fromDate = DateSettingService.getStartDate();
+    var toDate = DateSettingService.getEndDate();
+    var stackCallUrl = "https://api.stackexchange.com/2.2/questions?";
+    var fromDateParam = "fromdate = " + fromDate;
+    var toDateParam = "todate=" + toDate;
+    var paramSet = false;
+    var keyUrl = DateSettingService.getKeyUrl();
+    if (fromDate && toDate) {
+        stackCallUrl += fromDateParam + "&" + toDateParam;
+        paramSet = true;
+    } else {
+        if (fromDate) {
+            stackCallUrl += fromDateParam;
             paramSet = true;
-        } else {
-            if (fromDate) {
-                stackCallUrl += fromDateParam;
-                paramSet = true;
-            }
-            if (toDate) {
-                stackCallUrl += toDateParam;
-                paramSet = true;
-            }
         }
-        var stackD = {
-            getStackData: function(endUrl) {
-                var endUrl = endUrl;
-                if (paramSet) {
-                    stackCallUrl += "&" + endUrl;
-                } else {
-                    stackCallUrl += endUrl;
-                }
-                stackCallUrl += keyUrl;
-                console.log(stackCallUrl);
-
-                var allStackData = {};
-                return $http({
-                    method: 'GET',
-                    url: stackCallUrl,
-                }).then(function(response) {
-                    // success . Do something with response
-                    //    console.log(response.data);
-                    return response.data;
-                });
-            }
+        if (toDate) {
+            stackCallUrl += toDateParam;
+            paramSet = true;
         }
+    }
+    var stackD = {
+        getStackData: function(endUrl) {
+            var endUrl = endUrl;
+            if (paramSet) {
+                stackCallUrl += "&" + endUrl;
+            } else {
+                stackCallUrl += endUrl;
+            }
+            stackCallUrl += keyUrl;
+            console.log(stackCallUrl);
 
-        return stackD;
-    }])
+            var allStackData = {};
+            return $http({
+                method: 'GET',
+                url: stackCallUrl,
+            }).then(function(response) {
+                // success . Do something with response
+                //    console.log(response.data);
+                return response.data;
+            });
+        }
+    }
 
-    .factory('StackDataFactory2', ['$http', 'DateSettingService', function($http, DateSettingService) {
+    return stackD;
+}])
+
+.factory('StackDataFactory2', ['$http', 'DateSettingService', function($http, DateSettingService) {
         //  var stackCallUrl = "http://54.213.200.141:8080/Raml/rest/userquestions/23";
         //  var stackCallUrl = "http://api.stackexchange.com/2.2/questions?order=desc&sort=activity&site=stackoverflow";
         var fromDate = DateSettingService.getStartDate();
@@ -170,37 +170,68 @@ angular.module('app.services', [])
     //}])
 
 .factory('SearchByTagDataFactory', ['$http', 'DateSettingService', function($http, DateSettingService) {
-        var keyUrl = DateSettingService.getKeyUrl();
+    var keyUrl = DateSettingService.getKeyUrl();
 
-        var tagsData = {
-            getSearchTagsData: function() {
-                var searchVal = DateSettingService.getSearchTagValue();
-                // prepare url 
-                var stackCallUrl = "https://api.stackexchange.com/2.2/tags/";
-                var tagValue = searchVal;
-                var apiUrl = "/faq?site=stackoverflow";
-                stackCallUrl += tagValue + apiUrl;
-                stackCallUrl += keyUrl;
-                console.log(" User entered Search Tag Url ---");
-                console.log(stackCallUrl);
-                var allStackData = {};
-                return $http({
-                    method: 'GET',
-                    url: stackCallUrl,
-                }).then(function(response) {
-                    // success . Do something with response
-                    //    console.log(response.data);
-                    return response.data;
-                });
-            }
+    var tagsData = {
+        getSearchTagsData: function() {
+            var searchVal = DateSettingService.getSearchTagValue();
+            // prepare url 
+            var stackCallUrl = "https://api.stackexchange.com/2.2/tags/";
+            var tagValue = searchVal;
+            var apiUrl = "/faq?site=stackoverflow";
+            stackCallUrl += tagValue + apiUrl;
+            stackCallUrl += keyUrl;
+            console.log(" User entered Search Tag Url ---");
+            console.log(stackCallUrl);
+            var allStackData = {};
+            return $http({
+                method: 'GET',
+                url: stackCallUrl,
+            }).then(function(response) {
+                // success . Do something with response
+                //    console.log(response.data);
+                return response.data;
+            });
         }
-        console.log(tagsData);
-        return tagsData;
-    }])
-    .factory('BlankFactory', [function() {
+    }
+    console.log(tagsData);
+    return tagsData;
+}])
 
-    }])
+.factory('BlankFactory', [function() {
+
+}])
 
 .service('BlankService', [function() {
 
+}])
+
+.factory('UserLocationFactory', ['$http', 'DateSettingService', function($http, DateSettingService) {
+    var keyUrl = DateSettingService.getKeyUrl();
+
+    var tagsData = {
+        getUserLocationData: function() {
+            // var searchVal = DateSettingService.getSearchTagValue();
+            // prepare url 
+            var stackCallUrl = "http://localhost:8080/MongoRestServices/rest/userslocation/hi";
+            console.log(" User entered Search Tag Url ---");
+            console.log(stackCallUrl);
+            var allStackData = {};
+            return $http({
+                method: 'GET',
+                url: stackCallUrl,
+                headers: {
+                    
+                    "Access-Control-Allow-Origin": "*"
+                   // "Access-Control-Allow-Origin": "GET,PUT,POST,DELETE"
+                }
+            }).then(function(response) {
+                // success . Do something with response
+                //    console.log(response.data);
+                return response.data;
+            });
+        }
+    }
+    console.log(tagsData);
+    return tagsData;
 }]);
