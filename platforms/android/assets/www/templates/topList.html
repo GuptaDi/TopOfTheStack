@@ -1,60 +1,57 @@
-<ion-view title="Top Of The Stack" id="page5" ng-controller="allDataContentsCtrl" ng-init="getStackN()">
+<ion-view title="Top Of The Stack" id="page5" ng-controller="allDataContentsCtrl">
     <ion-content scroll="false">
         <tab-slide-box>
             <div class="tsb-icons">
                 <div class="tsb-ic-wrp">
                     <ion-scroll direction="x" class="tsb-hscroll">
-                        <a href="javascript:;" class="ion-home1">Home</a>
-                        <a href="javascript:;" class="ion-ios-game-controller-b1">Games</a>
-                        <a href="javascript:;" class="ion-email1">Email</a>
-                        <a href="javascript:;" class="ion-model-s1">Car</a>
-                        <a href="javascript:;" class="ion-person1">Profile</a>
-                        <a href="javascript:;" class="ion-heart1">Favourites</a>
-                        <a href="javascript:;" class="ion-chatbubbles1">Chats</a>
-                        <a href="javascript:;" class="ion-gear-b1">Settings</a>
-                        <a href="javascript:;" class="ion-camera1">Photos</a>
-                        <a href="javascript:;" class="ion-ios-paw1">Pets</a>
+                        <a href="javascript:;" ng-click="getStackN()" >Top Scored</a>
+                        <a href="javascript:;" ng-click="getStackN()" >Top Answered</a>
+                        <a href="javascript:;" ng-click="getStackN()" >Top Viewed</a>
+                        <a href="javascript:;" ng-click="getStackN()" >Top Users</a>
                     </ion-scroll>
                 </div>
             </div>
-            <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">
+            <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)" >
                 <ion-slide>
-                    <h3>Home content</h3>
-                    <div style="color: white; font-weight: bold; font-size: 19px;">
-                        Most discussed questions on stack overflow
-                    </div>
+                    <h3>Top scored questions on stack overflow</h3>
+                    <ion-list>
                     <div class="list card">
-                        <a href="{{data.link}}" class="item item-text-wrap" ng-repeat="data in stackData.items">
-                {{data.title}}
-            </a>
+                        <ion-item href="{{data.link}}" class="item item-text-wrap" ng-repeat="data in stackData.items">
+                            {{data.title}}
+                        </ion-item>
                     </div>
+                    </ion-list>>
+                </ion-slide>
+                
+                <ion-slide>
+                    <h3>Top answered questions on stack overflow</h3>
+                    <ion-list>
+                    <div class="list card">
+                        <ion-item href="{{data.link}}" class="item item-text-wrap" ng-repeat="data in stackData.items">
+                            {{data.title}}
+                        </ion-item>
+                    </div>
+                    </ion-list>>
                 </ion-slide>
                 <ion-slide>
-                    <h3>Games content</h3>
+                   <h3>Top viewed questions on stack overflow</h3>
+                    <ion-list>
+                    <div class="list card">
+                        <ion-item href="{{data.link}}" class="item item-text-wrap" ng-repeat="data in stackData.items">
+                            {{data.title}}
+                        </ion-item>
+                    </div>
+                    </ion-list>>
                 </ion-slide>
                 <ion-slide>
-                    <h3>Mail content</h3>
-                </ion-slide>
-                <ion-slide>
-                    <h3>Car content</h3>
-                </ion-slide>
-                <ion-slide>
-                    <h3>Profile content</h3>
-                </ion-slide>
-                <ion-slide>
-                    <h3>Favourites content</h3>
-                </ion-slide>
-                <ion-slide>
-                    <h3>Chats content</h3>
-                </ion-slide>
-                <ion-slide>
-                    <h3>Settings content</h3>
-                </ion-slide>
-                <ion-slide>
-                    <h3>Photos content</h3>
-                </ion-slide>
-                <ion-slide>
-                    <h3>Pets content</h3>
+                    <h3>Top users on stack overflow</h3>
+                    <ion-list>
+                    <div class="list card">
+                        <ion-item href="{{data.link}}" class="item item-text-wrap" ng-repeat="data in stackData.items">
+                            {{data.title}}
+                        </ion-item>
+                    </div>
+                    </ion-list>>
                 </ion-slide>
             </ion-slide-box>
         </tab-slide-box>

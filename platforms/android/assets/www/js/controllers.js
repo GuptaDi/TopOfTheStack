@@ -96,15 +96,23 @@ angular.module('app.controllers', [])
     }
 ])
 
-.controller('allDataContentsCtrl', ['$rootScope', "$scope", "$stateParams", "$q", "$location", "$window", '$timeout', 'StackDataFactory',
-    function($rootScope, $scope, $stateParams, $q, $location, $window, $timeout, StackDataFactory) {
+.controller('allDataContentsCtrl', ['$rootScope', "$scope", "$stateParams", "$q", "$location", "$window", '$timeout', 'StackDataFactory','StackDataFactory2',
+    function($rootScope, $scope, $stateParams, $q, $location, $window, $timeout, StackDataFactory,StackDataFactory2) {
         $scope.getStackN = function() {
-            StackDataFactory.getStackData().then(function(response) {
+            StackDataFactory.getStackData('order=desc&sort=activity&site=stackoverflow').then(function(response) {
                 // return response;
                 $scope.stackData = response;
                 console.log($scope.stackData);
             });
         }
+        $scope.getDetails2 = function() {
+            StackDataFactory2.getStackData().then(function(response) {
+                // return response;
+                $scope.stackData2 = response;
+                console.log($scope.stackData2);
+            });
+        }
+        
         $scope.onSlideMove = function(data) {
             //alert("You have selected " + data.index + " tab");
         };

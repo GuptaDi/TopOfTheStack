@@ -6,7 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 
-angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives', 'app.services', 'ionic.cloud', 'ionic-datepicker','tabSlideBox'])
+angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives', 'app.services', 'ionic.cloud', 'ionic-datepicker','tabSlideBox','countUpModule'])
 
 .config(function($ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom');
