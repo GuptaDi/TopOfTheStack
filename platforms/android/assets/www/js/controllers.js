@@ -1,10 +1,31 @@
 angular.module('app.controllers', [])
 
 .controller('homePageCtrl', ['$scope', '$stateParams', 'StackDataFactory', 'SearchByTagDataFactory','UserLocationFactory',
-    '$state', '$rootScope', 'DateSettingService', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+    '$state', '$rootScope', 'DateSettingService','InfoFactory', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
     // You can include any angular dependencies as parameters for this function
     // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function($scope, $stateParams, StackDataFactory, SearchByTagDataFactory,UserLocationFactory, $state, $rootScope, DateSettingService) {
+    function($scope, $stateParams, StackDataFactory, SearchByTagDataFactory,UserLocationFactory, $state, $rootScope, DateSettingService,InfoFactory) {
+        
+        
+         $scope.liveInfo = "";
+         $scope.activeUsers = 2;
+        $scope.getLiveInfo = function() {
+            InfoFactory.getLiveInfo().then(function(response) {
+                // return response;
+                $scope.liveInfo = response.items;
+                console.log("^@@@@@@@@@@@@@@@!!!!!!!");
+                console.log($scope.liveInfo);
+               $scope.activeUsers = $scope.liveInfo[0].new_active_users;
+               console.log($scope.activeUsers );
+            }, function(errorResponse) {
+                console.log(" Error ---");
+                console.log(errorResponse);
+            });
+
+        };
+
+        
+        
         $scope.getTechGraph = function() {
             var n = listnew;
             // Build the chart
@@ -41,9 +62,6 @@ angular.module('app.controllers', [])
 
         $scope.getTechGraph2 = function() {
 
-                console.log("asdamhsdak");
-
-            
             var userByLoc = [];
             var arr =['Country', 'Users Count'];
             userByLoc.push(arr);
@@ -51,18 +69,7 @@ angular.module('app.controllers', [])
 
 
             UserLocationFactory.getUserLocationData().then(function(response) {
-                    // return response;
-                    //$scope.stackData = response;
-                    console.log(response);
-                    console.log("-------");
-                    console.log();
                     var userLocLength = response.userslocation.length;
-
-// var arrTemp = [];
-//                         arrTemp.push(response.userslocation[i]['location']);
-//                         arrTemp.push(response.userslocation[i]['count']*90);
-//                         console.log(arrTemp);
-
                     for(var i=0; i<userLocLength; i++){
                         var loc = response.userslocation[i]['location'];
                         if(loc && loc != 'india' && loc != 'CA' && loc != 'U.S.' && loc != 'EstadosUnidos' ){
@@ -70,13 +77,9 @@ angular.module('app.controllers', [])
                         
                         arrTemp.push(response.userslocation[i]['location']);
                         arrTemp.push(response.userslocation[i]['count']*5);
-                        console.log(arrTemp);
-                        console.log(" TEMP------------------");
-
                         userByLoc.push(arrTemp);
-
-                        }
                     }
+            }
                     console.log("^^^^^^^^^^^^^^");
                 console.log(userByLoc);
 google.charts.load('upcoming', { 'packages': ['geochart'] });

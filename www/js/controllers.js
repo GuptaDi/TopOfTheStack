@@ -13,10 +13,7 @@ angular.module('app.controllers', [])
             InfoFactory.getLiveInfo().then(function(response) {
                 // return response;
                 $scope.liveInfo = response.items;
-                console.log("^@@@@@@@@@@@@@@@!!!!!!!");
-                console.log($scope.liveInfo);
                $scope.activeUsers = $scope.liveInfo[0].new_active_users;
-               console.log($scope.activeUsers );
             }, function(errorResponse) {
                 console.log(" Error ---");
                 console.log(errorResponse);
@@ -24,8 +21,6 @@ angular.module('app.controllers', [])
 
         };
 
-        
-        
         $scope.getTechGraph = function() {
             var n = listnew;
             // Build the chart
@@ -80,10 +75,9 @@ angular.module('app.controllers', [])
                         userByLoc.push(arrTemp);
                     }
             }
-                    console.log("^^^^^^^^^^^^^^");
-                console.log(userByLoc);
-google.charts.load('upcoming', { 'packages': ['geochart'] });
-            google.charts.setOnLoadCallback(drawRegionsMap);
+            
+                google.charts.load('upcoming', { 'packages': ['geochart'] });
+                google.charts.setOnLoadCallback(drawRegionsMap);
 
                 }, function(errorResponse) {
                     console.log(" Error ---");
