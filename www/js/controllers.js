@@ -1,19 +1,34 @@
 angular.module('app.controllers', [])
 
-.controller('homePageCtrl', ['$scope', '$stateParams', 'StackDataFactory', 'SearchByTagDataFactory','UserLocationFactory',
-    '$state', '$rootScope', 'DateSettingService','InfoFactory', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('homePageCtrl', ['$scope', '$stateParams', 'StackDataFactory', 'MongoServiceFactory', 'SearchByTagDataFactory', 'UserLocationFactory', 'TagsDataFactory',
+    '$state', '$rootScope', 'DateSettingService', 'InfoFactory', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
     // You can include any angular dependencies as parameters for this function
     // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function($scope, $stateParams, StackDataFactory, SearchByTagDataFactory,UserLocationFactory, $state, $rootScope, DateSettingService,InfoFactory) {
-        
-        
-         $scope.liveInfo = "";
-         $scope.activeUsers = 2;
+    function($scope, $stateParams, StackDataFactory, MongoServiceFactory, SearchByTagDataFactory, UserLocationFactory, TagsDataFactory, $state, $rootScope, DateSettingService, InfoFactory) {
+
+
+        $scope.liveInfo = "";
+        $scope.activeUsers = 2;
         $scope.getLiveInfo = function() {
             InfoFactory.getLiveInfo().then(function(response) {
                 // return response;
                 $scope.liveInfo = response.items;
-               $scope.activeUsers = $scope.liveInfo[0].new_active_users;
+                console.log("^@@@@@@@@@@@@@@@!!!!!!!");
+                console.log($scope.liveInfo);
+                $scope.new_active_users = $scope.liveInfo[0].new_active_users;
+                $scope.total_users = $scope.liveInfo[0].total_users;
+                $scope.badges_per_minute = $scope.liveInfo[0].badges_per_minute;
+                $scope.total_badges = $scope.liveInfo[0].total_badges;
+                $scope.total_votes = $scope.liveInfo[0].total_votes;
+                $scope.total_comments = $scope.liveInfo[0].total_comments;
+                $scope.answers_per_minute = $scope.liveInfo[0].answers_per_minute;
+                $scope.questions_per_minute = $scope.liveInfo[0].questions_per_minute;
+                $scope.total_answers = $scope.liveInfo[0].total_answers;
+                $scope.total_accepted = $scope.liveInfo[0].total_accepted;
+                $scope.total_unanswered = $scope.liveInfo[0].total_unanswered;
+                $scope.answers_per_minute = $scope.liveInfo[0].answers_per_minute;
+                $scope.total_questions = $scope.liveInfo[0].total_questions;
+                console.log($scope.activeUsers);
             }, function(errorResponse) {
                 console.log(" Error ---");
                 console.log(errorResponse);
@@ -22,94 +37,91 @@ angular.module('app.controllers', [])
         };
 
         $scope.getTechGraph = function() {
+
             var n = listnew;
+            var funnelGraphData = [];
             // Build the chart
-            $('#graphcontainer').highcharts({
-                chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false,
-                    type: 'pie'
-                },
-                title: {
-                    text: 'Most discussed technologies on stackoverflow'
-                },
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        dataLabels: {
+            TagsDataFactory.getTagsData().then(function(response) {
+                    var length = response.items.length;
+                    for (var i = 0; i < length; i++) {
+                        var obj = { 'name': response.items[i]['name'], 'y': response.items[i]['count'] };
+                        funnelGraphData.push(obj);
+
+                    }
+
+
+                    $('#graphcontainer').highcharts({
+                        chart: {
+                            type: 'funnel',
+                            marginRight: 150
+                        },
+                        title: {
+                            text: '',
+                            x: -50
+                        },
+                        plotOptions: {
+                            series: {
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}</b> ({point.y:,.0f})',
+                                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
+                                    softConnector: true
+                                },
+                                neckWidth: '30%',
+                                neckHeight: '25%'
+
+                                //-- Other available options
+                                // height: pixels or percent
+                                //width: '20%'
+                            }
+                        },
+                        legend: {
                             enabled: false
                         },
-                        showInLegend: true
-                    }
+                        series: [{
+                            name: 'Questions count',
+                            data: funnelGraphData
+                        }]
+                    });
+
                 },
-                series: [{
-                    name: '',
-                    colorByPoint: true,
-                    data: n
-                }]
-            });
+                function(errorResponse) {
+                    console.log(" Error ---");
+                    console.log(errorResponse);
+                });
+
+
         };
 
         $scope.getTechGraph2 = function() {
-
             var userByLoc = [];
-            var arr =['Country', 'Users Count'];
+            var arr = ['Country', 'Users Count'];
             userByLoc.push(arr);
 
-
-
             UserLocationFactory.getUserLocationData().then(function(response) {
-                    var userLocLength = response.userslocation.length;
-                    for(var i=0; i<userLocLength; i++){
-                        var loc = response.userslocation[i]['location'];
-                        if(loc && loc != 'india' && loc != 'CA' && loc != 'U.S.' && loc != 'EstadosUnidos' ){
+                var userLocLength = response.items.length;
+                for (var i = 0; i < userLocLength; i++) {
+                    var loc = response.items[i]['location'];
+                    if (loc && loc != 'india' && loc != 'CA' && loc != 'U.S.' && loc != 'EstadosUnidos') {
                         var arrTemp = [];
-                        
-                        arrTemp.push(response.userslocation[i]['location']);
-                        arrTemp.push(response.userslocation[i]['count']*5);
+
+                        arrTemp.push(response.items[i]['location']);
+                        arrTemp.push(response.items[i]['count'] * 5);
                         userByLoc.push(arrTemp);
                     }
-            }
-            
+                }
                 google.charts.load('upcoming', { 'packages': ['geochart'] });
                 google.charts.setOnLoadCallback(drawRegionsMap);
 
-                }, function(errorResponse) {
-                    console.log(" Error ---");
-                    console.log(errorResponse);
-                        });
-
-
-            // var userByLoc = [];
-            //     UserLocationFactory.getUserLocationData().then(function(resp){
-            //         userByLoc = resp;
-            //     });
-            //     console.log(userByLoc);
+            }, function(errorResponse) {
+                console.log(" Error ---");
+                console.log(errorResponse);
+            });
 
             function drawRegionsMap() {
-               var data = google.visualization.arrayToDataTable(userByLoc);
-                // var data = google.visualization.arrayToDataTable([
-                //      ['Country', 'Popularity'],
-                //     ['Germany', 100],
-                //     ['United States', 100],
-                //     ['Brazil', 100],
-                //     ['Canada', 100],
-                //     ['France', 100],
-                //     ['RU', 100],
-                //     [' India ', 190],
-                //     ['Canada', 900],
-
-                // ]);
-
+                var data = google.visualization.arrayToDataTable(userByLoc);
                 var options = {};
-
                 var chart = new google.visualization.GeoChart(document.getElementById('graphcontainer2'));
-
                 chart.draw(data, options);
             }
         };
@@ -144,23 +156,31 @@ angular.module('app.controllers', [])
 ])
 
 
-.controller('allDataContentsCtrl', ['$rootScope', "$scope", "$stateParams", "$q", "$location", "$window", '$timeout', 'StackDataFactory','StackDataFactory2',
-    function($rootScope, $scope, $stateParams, $q, $location, $window, $timeout, StackDataFactory,StackDataFactory2) {
-        $scope.getStackN = function() {
-            StackDataFactory.getStackData('order=desc&sort=activity&site=stackoverflow').then(function(response) {
+.controller('allDataContentsCtrl', ['$rootScope', "$scope", "$stateParams", "$q", "$location", "$window", '$timeout', 'StackDataFactory', 'MongoServiceFactory',
+    function($rootScope, $scope, $stateParams, $q, $location, $window, $timeout, StackDataFactory, MongoServiceFactory) {
+        $scope.getMostLiked = function() {
+            StackDataFactory.getStackData('order=desc&sort=votes&site=stackoverflow').then(function(response) {
                 // return response;
-                $scope.stackData = response;
+                $scope.likedData = response;
                 console.log($scope.stackData);
             });
         }
-        $scope.getDetails2 = function() {
-            StackDataFactory2.getStackData().then(function(response) {
+        $scope.getMostAnswered = function() {
+            MongoServiceFactory.getMongoData('mostanswered').then(function(response) {
                 // return response;
-                $scope.stackData2 = response;
+                $scope.answeredData = response;
                 console.log($scope.stackData2);
             });
         }
-        
+
+         $scope.getMostViewed = function() {
+            MongoServiceFactory.getMongoData('mostviewed').then(function(response) {
+                // return response;
+                $scope.viewedData = response;
+                console.log($scope.stackData2);
+            });
+        }
+
         $scope.onSlideMove = function(data) {
             //alert("You have selected " + data.index + " tab");
         };

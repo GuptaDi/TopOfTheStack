@@ -1,64 +1,65 @@
 <ion-view title="Top Of The Stack" id="page1" ng-controller="homePageCtrl" ng-init="getLiveInfo();getTechGraph();getTechGraph2();">
     <ion-content padding="true" class="has-header">
-
         <div>
             <form id="homePage-form1" class="list" ng-submit="getSearchByTags()">
-            
                 <label class="item item-input">
                     <i class="icon ion-search placeholder-icon"></i>
-                    <input type="search" id="searchByTag" ng-model="searchByTag" placeholder="Search By Tag">
+                    <input type="search" id="searchByTag" ng-model="searchByTag" placeholder="Search top asked questions by tag">
                 </label>
             </form>
         </div>
-        
         <div class="flex-container">
-            <div class="flex-item"><label class="stat-labels">Active Users</label>
-                <div class="stat-container"><span class="show-stats" count-up end-val="11" class="stat-style">0.0</span>
+            <div class="flex-item">
+                <label class="stat-labels">Active Users</label>
+                <div class="stat-container"><span class="show-stats" count-up end-val="new_active_users" class="stat-style">0.0</span>
                     <span class="end-stat"></span></div>
             </div>
-            <div class="flex-item"><label class="stat-labels">Total Users</label>
-                <div class="stat-container"><span class="show-stats" count-up end-val="6310349" class="stat-style">0.0</span>
+            <div class="flex-item">
+                <label class="stat-labels">Total Users</label>
+                <div class="stat-container"><span class="show-stats" count-up end-val="total_users" class="stat-style">0.0</span>
                     <span class="end-stat"></span></div>
             </div>
-            <div class="flex-item"><label class="stat-labels">Total Comments</label>
-                <div class="stat-container"><span class="show-stats" count-up end-val="62533494" class="stat-style">0.0</span>
+            <div class="flex-item">
+                <label class="stat-labels">Total Comments</label>
+                <div class="stat-container"><span class="show-stats" count-up end-val="total_comments" class="stat-style">0.0</span>
                     <span class="end-stat"></span></div>
             </div>
-         <div class="flex-item"><label class="stat-labels">Total Answers</label>
-                <div class="stat-container"><span class="show-stats" count-up end-val="20306153" class="stat-style">0.0</span>
+            <div class="flex-item">
+                <label class="stat-labels">Total Answers</label>
+                <div class="stat-container"><span class="show-stats" count-up end-val="total_answers" class="stat-style">0.0</span>
                     <span class="end-stat"></span></div>
             </div>
-            
-            <div class="flex-item"><label class="stat-labels">Answers</label>
-                <div class="stat-container"><span class="show-stats" count-up end-val="1010" class="stat-style">0.0</span>
+            <div class="flex-item">
+                <label class="stat-labels">Answers</label>
+                <div class="stat-container"><span class="show-stats" count-up end-val="answers_per_minute" class="stat-style">0.0</span>
                     <span class="end-stat">/ min</span></div>
             </div>
-            <div class="flex-item"><label class="stat-labels">Questions</label>
-                <div class="stat-container"><span class="show-stats" count-up end-val="2.93" class="stat-style">0.0</span>
+            <div class="flex-item">
+                <label class="stat-labels">Questions</label>
+                <div class="stat-container"><span class="show-stats" count-up end-val="questions_per_minute" class="stat-style">0.0</span>
                     <span class="end-stat">/ min</span></div>
             </div>
-            <div class="flex-item"><label class="stat-labels">Total Accepted</label>
-                <div class="stat-container"><span class="show-stats" count-up end-val="6949294" class="stat-style">0.0</span>
+            <div class="flex-item">
+                <label class="stat-labels">Total Accepted</label>
+                <div class="stat-container"><span class="show-stats" count-up end-val="total_accepted" class="stat-style">0.0</span>
                     <span class="end-stat"></span></div>
             </div>
-
-<!--
+            <!--
             <div class="flex-item"><label class="stat-labels">Total Unanswered</label>
                 <div class="stat-container"><span class="show-stats" count-up end-val="3555148" class="stat-style">0.0</span>
                     <span class="end-stat"></span></div>
             </div>
 -->
-             <div class="flex-item"><label class="stat-labels">Total Questions</label>
-                <div class="stat-container"><span class="show-stats" count-up end-val="12748320" class="stat-style">0.0</span>
+            <div class="flex-item">
+                <label class="stat-labels">Total Questions</label>
+                <div class="stat-container"><span class="show-stats" count-up end-val="total_questions" class="stat-style">0.0</span>
                     <span class="end-stat"></span></div>
             </div>
         </div>
-
         <div id="graphcontainer" class="graphTechnology" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto">
         </div>
-       <br/>
-         <div id="graphcontainer2" class="graphTechnology" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto">
+        <br/>
+        <div id="graphcontainer2" class="graphTechnology" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto">
         </div>
-        
     </ion-content>
 </ion-view>

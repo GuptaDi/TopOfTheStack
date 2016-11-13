@@ -1,12 +1,25 @@
 <ion-view title="Search result - Top Of The Stack" id="page5" ng-controller="searchContentCtrl" ng-init="getSearchContent()">
-    <h4>Search by Tag Questions</h4> 
+    <h4>Search by Tag Questions</h4>
     <ion-content padding="true" class="has-header">
-       
-        <div class="" > 
-            <a href="{{data.link}}" class="item item-text-wrap" ng-repeat="data in stackData.items">
-                {{data.title}}
-            </a>
+        <div class="list card">
+            <ion-item class="item item-text-wrap" ng-repeat="data in stackData.items" style="    padding: 0px;">
+                <div class="flex-container" style="margin-bottom: 10px;">
+                    <div class="flex-items">
+                        <img ng-src={{data.owner.profile_image}} style="width: 40px;height: 40px;float: left;display: inline-flex;border-radius: 50%;border: 1px solid #f0f90f;" />
+                        <div class="user-name" style="width: 40px;word-wrap: break-word;line-height: 1;"> {{data.owner.display_name}}</div>
+                    </div>
+                    <div class="flex-items" style="width:80%;text-align: left;">
+                        <span style="font-size: 15px;"><a href="{{data.link}}" style="text-decoration: none;">{{data.title}}</a></span>
+                        <div class="ques-tags">
+                            <span ng-repeat="tag in data.tags">
+                                <a class="post-tag">
+                                {{tag}}
+                                </a>
+                                </span>
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
         </div>
-        
     </ion-content>
 </ion-view>

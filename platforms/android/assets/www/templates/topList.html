@@ -4,95 +4,83 @@
             <div class="tsb-icons">
                 <div class="tsb-ic-wrp">
                     <ion-scroll direction="x" class="tsb-hscroll">
-                        <a href="javascript:;" ng-click="getStackN()" >Top Scored</a>
-                        <a href="javascript:;" ng-click="getStackN()" >Top Answered</a>
-                        <a href="javascript:;" ng-click="getStackN()" >Top Viewed</a>
-                        <a href="javascript:;" ng-click="getStackN()" >Top Users</a>
+                        <a href="javascript:;" ng-click="getMostLiked()">Most liked</a>
+                        <a href="javascript:;" ng-click="getMostAnswered()">Most answered</a>
+                        <a href="javascript:;" ng-click="getMostViewed()">Most viewed</a>
                     </ion-scroll>
                 </div>
             </div>
-            <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)" style="overflow-y: scroll;" >
+            <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)" style="overflow-y: scroll;">
                 <ion-slide>
                     <ion-list>
-                    <div class="list card">
-                      <ion-item class="item item-text-wrap" ng-repeat="data in stackData.items" style="    padding: 0px;">
-                           <div class="flex-container" style="margin-bottom: 10px;">
-                                <div class="flex-items">
-                                    <img ng-src={{data.owner.profile_image}} style="width: 40px;height: 40px;float: left;display: inline-flex;border-radius: 50%;border: 1px solid #f0f90f;" />
-                                    <div class="user-name" style="width: 40px;word-wrap: break-word;line-height: 1;"> {{data.owner.display_name}}</div>
-
-                                </div>
-                                <div class="flex-items" style="width:80%;text-align: left;">
-                                    <span style="font-size: 15px;"><a href="{{data.link}}" style="text-decoration: none;">{{data.title}}</a></span>
-                                    <div class="ques-tags">
-
-                                <span ng-repeat="tag in data.tags">
+                        <div class="list card">
+                            <ion-item class="item item-text-wrap" ng-repeat="data in likedData.items" style="    padding: 0px;">
+                                <div class="flex-container" style="margin-bottom: 10px;">
+                                    <div class="flex-items">
+                                        <img ng-src={{data.owner.profile_image}} style="width: 40px;height: 40px;float: left;display: inline-flex;border-radius: 50%;border: 1px solid #f0f90f;" />
+                                        <div class="user-name" style="width: 40px;word-wrap: break-word;line-height: 1;"> {{data.owner.display_name}}</div>
+                                    </div>
+                                    <div class="flex-items" style="width:80%;text-align: left;">
+                                        <span style="font-size: 15px;"><a href="{{data.link}}" style="text-decoration: none;">{{data.title}}</a></span>
+                                        <div class="ques-tags">
+                                            <span ng-repeat="tag in data.tags">
                                 <a class="post-tag">
                                 {{tag}}
                                 </a>
                                 </span>
-
-                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                           </div>
-
-
-
-
-                         <!--    <div class="user-profile">
-                                <div class="user-pic">
-                                <img ng-src={{data.owner.profile_image}} style="width:inherit; height: inherit;" />
-
-                                 <div class="user-name"> {{data.owner.display_name}}</div>
-
-                                </div>
-                            </div>
-                            <div class="summary">
-                            <span><a href="{{data.link}}" style="text-decoration: none;">{{data.title}}</a></span>
-                            <div class="ques-tags">
-
-                                <span ng-repeat="tag in data.tags">
+                            </ion-item>
+                        </div>
+                    </ion-list>
+                </ion-slide>
+                <ion-slide>
+                    <ion-list>
+                        <div class="list card">
+                            <ion-item class="item item-text-wrap" ng-repeat="data in answeredData.items" style="    padding: 0px;">
+                                <div class="flex-container" style="margin-bottom: 10px;">
+                                    <div class="flex-items">
+                                        <img ng-src={{data.profile_image}} style="width: 40px;height: 40px;float: left;display: inline-flex;border-radius: 50%;border: 1px solid #f0f90f;" />
+                                        <div class="user-name" style="width: 40px;word-wrap: break-word;line-height: 1;"> {{data.display_name}}</div>
+                                    </div>
+                                    <div class="flex-items" style="width:80%;text-align: left;">
+                                        <span style="font-size: 15px;"><a href="{{data.link}}" style="text-decoration: none;">{{data.title}}</a></span>
+                                        <div class="ques-tags">
+                                            <span >
                                 <a class="post-tag">
-                                {{tag}}
+                                {{data.tags}}
                                 </a>
                                 </span>
-
-                            </div>
-                            </div> -->
-
-                      </ion-item>
-                       <!--  <ion-item href="{{data.link}}" class="item item-text-wrap" ng-repeat="data in stackData.items">
-                            {{data.title}}
-                        </ion-item> -->
-                    </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ion-item>
+                        </div>
                     </ion-list>
                 </ion-slide>
-                
-                <ion-slide>
+                 <ion-slide>
                     <ion-list>
-                    <div class="list card">
-                        <ion-item href="{{data.link}}" class="item item-text-wrap" ng-repeat="data in stackData.items">
-                            {{data.title}}
-                        </ion-item>
-                    </div>
-                    </ion-list>
-                </ion-slide>
-                <ion-slide>
-                    <ion-list>
-                    <div class="list card">
-                        <ion-item href="{{data.link}}" class="item item-text-wrap" ng-repeat="data in stackData.items">
-                            {{data.title}}
-                        </ion-item>
-                    </div>
-                    </ion-list>
-                </ion-slide>
-                <ion-slide>
-                    <ion-list>
-                    <div class="list card">
-                        <ion-item href="{{data.link}}" class="item item-text-wrap" ng-repeat="data in stackData.items">
-                            {{data.title}}
-                        </ion-item>
-                    </div>
+                        <div class="list card">
+                            <ion-item class="item item-text-wrap" ng-repeat="data in viewedData.items" style="    padding: 0px;">
+                                <div class="flex-container" style="margin-bottom: 10px;">
+                                    <div class="flex-items">
+                                        <img ng-src={{data.profile_image}} style="width: 40px;height: 40px;float: left;display: inline-flex;border-radius: 50%;border: 1px solid #f0f90f;" />
+                                        <div class="user-name" style="width: 40px;word-wrap: break-word;line-height: 1;"> {{data.display_name}}</div>
+                                    </div>
+                                    <div class="flex-items" style="width:80%;text-align: left;">
+                                        <span style="font-size: 15px;"><a href="{{data.link}}" style="text-decoration: none;">{{data.title}}</a></span>
+                                        <div class="ques-tags">
+                                            <span >
+                                <a class="post-tag">
+                                {{data.tags}}
+                                </a>
+                                </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ion-item>
+                        </div>
                     </ion-list>
                 </ion-slide>
             </ion-slide-box>

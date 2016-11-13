@@ -6,7 +6,8 @@ angular.module('app.services', [])
     var startDate = "";
     var endDate = "";
     var searchTagVal = "c"; // default value
-    var keyUrl = "&key=egA029dyJ24Auv0bm5y0Ug((&access_token=mc0nqVUDJdRgV5ePheyS4Q))";
+    var keyUrl = "&key=egA029dyJ24Auv0bm5y0Ug((&access_token=*jpdfS2OJl33UZZM(divUQ))";
+    var awsUrl = "http://192.168.0.102:8080/MongoRestServices/rest/";
     var username = '';
     var profilePic = '';
     // set date ---------
@@ -26,6 +27,9 @@ angular.module('app.services', [])
         // global key to be append in the url
     this.getKeyUrl = function() {
         return keyUrl;
+    }
+    this.getAwsUrl = function() {
+        return awsUrl;
     }
     this.setSearchTagValue = function(tagVal) {
         searchTagVal = tagVal;
@@ -103,71 +107,60 @@ angular.module('app.services', [])
     return stackD;
 }])
 
-.factory('StackDataFactory2', ['$http', 'DateSettingService', function($http, DateSettingService) {
-        //  var stackCallUrl = "http://54.213.200.141:8080/Raml/rest/userquestions/23";
-        //  var stackCallUrl = "http://api.stackexchange.com/2.2/questions?order=desc&sort=activity&site=stackoverflow";
-        var fromDate = DateSettingService.getStartDate();
-        var toDate = DateSettingService.getEndDate();
-        var stackCallUrl = "https://api.stackexchange.com/2.2/questions?";
-        var fromDateParam = "fromdate = " + fromDate;
-        var toDateParam = "todate=" + toDate;
-        var paramSet = false;
-        var endUrl = "order=desc&sort=activity&site=stackoverflow";
-        var keyUrl = DateSettingService.getKeyUrl();
-        if (fromDate && toDate) {
-            stackCallUrl += fromDateParam + "&" + toDateParam;
-            paramSet = true;
-        } else {
-            if (fromDate) {
-                stackCallUrl += fromDateParam;
-                paramSet = true;
-            }
-            if (toDate) {
-                stackCallUrl += toDateParam;
-                paramSet = true;
-            }
-        }
-        if (paramSet) {
-            stackCallUrl += "&" + endUrl;
-        } else {
-            stackCallUrl += endUrl;
-        }
-        stackCallUrl += keyUrl;
-        console.log(stackCallUrl);
-        var stackD = {
-            getStackData: function() {
-                var allStackData = {};
-                return $http({
-                    method: 'GET',
-                    url: stackCallUrl,
-                }).then(function(response) {
-                    // success . Do something with response
-                    //    console.log(response.data);
-                    return response.data;
-                });
-            }
-        }
+.factory('MongoServiceFactory',  ['$http' ,'DateSettingService', function($http, DateSettingService) {
+    var awsUrl = DateSettingService.getAwsUrl();
 
-        return stackD;
+    var tagsData = {
+        getMongoData: function(endURL) {
+            // var searchVal = DateSettingService.getSearchTagValue();
+            // prepare url 
+            var stackCallUrl = awsUrl + endURL;
+            console.log(" User entered Search Tag Url ---");
+            console.log(stackCallUrl);
+            var allStackData = {};
+            return $http({
+                method: 'GET',
+                url: stackCallUrl,
+                headers: {
+                    
+                    "Access-Control-Allow-Origin": "*"
+                   // "Access-Control-Allow-Origin": "GET,PUT,POST,DELETE"
+                }
+            }).then(function(response) {
+                // success . Do something with response
+                //    console.log(response.data);
+                return response.data;
+            });
+        }
+    }
+    console.log(tagsData);
+    return tagsData;
     }])
-    //.factory('TagsDataFactory', ['$http', function($http) {
-    //    var stackCallUrl = "http://api.stackexchange.com/2.2/tags?fromdate=1477958400&todate=1477958400&order=desc&sort=popular&site=stackoverflow";
-    //    var tagsData = {
-    //        getTagsData: function() {
-    //            var allStackData = {};
-    //            return $http({
-    //                method: 'GET',
-    //                url: stackCallUrl,
-    //            }).then(function(response) {
-    //                // success . Do something with response
-    //                //    console.log(response.data);
-    //                return response.data;
-    //          });
-    //        }
-    //    }
-    //    console.log(tagsData);
-    //    return tagsData;
-    //}])
+
+    .factory('TagsDataFactory', ['$http', 'DateSettingService', function($http, DateSettingService) {
+       var keyUrl = DateSettingService.getKeyUrl();
+       var stackCallUrl = "https://api.stackexchange.com/2.2/tags?order=desc&sort=popular&site=stackoverflow";
+       stackCallUrl += keyUrl;  
+       var tagsData = {
+           getTagsData: function() {
+               var allStackData = {};
+               return $http({
+                   method: 'GET',
+                   url: stackCallUrl,
+               }).then(function(response) {
+                   // success . Do something with response
+                   //    console.log(response.data);
+                   return response.data;
+             });
+           }
+       }
+       console.log(tagsData);
+       return tagsData;
+    }])
+
+
+
+    
 
 .factory('SearchByTagDataFactory', ['$http', 'DateSettingService', function($http, DateSettingService) {
     var keyUrl = DateSettingService.getKeyUrl();
@@ -209,7 +202,7 @@ angular.module('app.services', [])
 .factory('InfoFactory', ['$http', 'DateSettingService', function($http, DateSettingService) {
     var keyUrl = DateSettingService.getKeyUrl();
     var stackCallUrl = "https://api.stackexchange.com/2.2/info?site=stackoverflow";
-                   
+         stackCallUrl += keyUrl;           
     var stackD = {
             getLiveInfo: function() {
                 var allStackData = {};
@@ -227,14 +220,14 @@ angular.module('app.services', [])
         return stackD;
     }])
 
-.factory('UserLocationFactory', ['$http', 'DateSettingService', function($http, DateSettingService) {
-    var keyUrl = DateSettingService.getKeyUrl();
+.factory('UserLocationFactory', ['$http', function($http) {
+   
 
     var tagsData = {
         getUserLocationData: function() {
             // var searchVal = DateSettingService.getSearchTagValue();
             // prepare url 
-            var stackCallUrl = "http://localhost:8080/MongoRestServices/rest/userslocation/hi";
+            var stackCallUrl = "http://192.168.0.102:8080/MongoRestServices/rest/userslocation";
             console.log(" User entered Search Tag Url ---");
             console.log(stackCallUrl);
             var allStackData = {};
