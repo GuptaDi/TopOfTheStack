@@ -1,12 +1,22 @@
 angular.module('app.controllers', [])
 
-.controller('homePageCtrl', ['$scope', '$stateParams', 'StackDataFactory', 'MongoServiceFactory', 'SearchByTagDataFactory', 'UserLocationFactory', 'TagsDataFactory',
+.controller('homePageCtrl', ['$scope', '$stateParams', 'StackDataFactory', 'MongoServiceFactory', 
+    'SearchByTagDataFactory', 'UserLocationFactory', 'TagsDataFactory',
     '$state', '$rootScope', 'DateSettingService', 'InfoFactory', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
     // You can include any angular dependencies as parameters for this function
     // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function($scope, $stateParams, StackDataFactory, MongoServiceFactory, SearchByTagDataFactory, UserLocationFactory, TagsDataFactory, $state, $rootScope, DateSettingService, InfoFactory) {
+    function($scope, $stateParams, StackDataFactory, MongoServiceFactory, 
+        SearchByTagDataFactory, UserLocationFactory, TagsDataFactory, 
+        $state, $rootScope, DateSettingService, InfoFactory) {
 
+        MongoServiceFactory.setToken().then(function(response){
+            console.log(" Token Received");
+        },function(errorResponse) {
+            console.log(" Token Not Received---");
+            console.log(errorResponse);
+        });
 
+       
         $scope.liveInfo = "";
         $scope.activeUsers = 2;
         $scope.getLiveInfo = function() {
@@ -173,7 +183,7 @@ angular.module('app.controllers', [])
             });
         }
 
-         $scope.getMostViewed = function() {
+        $scope.getMostViewed = function() {
             MongoServiceFactory.getMongoData('mostviewed').then(function(response) {
                 // return response;
                 $scope.viewedData = response;

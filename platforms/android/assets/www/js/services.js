@@ -6,8 +6,8 @@ angular.module('app.services', [])
     var startDate = "";
     var endDate = "";
     var searchTagVal = "c"; // default value
-    var keyUrl = "&key=egA029dyJ24Auv0bm5y0Ug((&access_token=*jpdfS2OJl33UZZM(divUQ))";
-    var awsUrl = "http://192.168.0.102:8080/MongoRestServices/rest/";
+    var keyUrl = ""; //"&key=egA029dyJ24Auv0bm5y0Ug((&access_token=*jpdfS2OJl33UZZM(divUQ))";
+    var awsUrl = "http://54.172.239.235:8080/MongoRestServices/rest/";
     var username = '';
     var profilePic = '';
     // set date ---------
@@ -27,6 +27,9 @@ angular.module('app.services', [])
         // global key to be append in the url
     this.getKeyUrl = function() {
         return keyUrl;
+    }
+    this.setKeyUrl = function(url) {
+        keyUrl = url;
     }
     this.getAwsUrl = function() {
         return awsUrl;
@@ -67,7 +70,6 @@ angular.module('app.services', [])
     var fromDateParam = "fromdate = " + fromDate;
     var toDateParam = "todate=" + toDate;
     var paramSet = false;
-    var keyUrl = DateSettingService.getKeyUrl();
     if (fromDate && toDate) {
         stackCallUrl += fromDateParam + "&" + toDateParam;
         paramSet = true;
@@ -83,6 +85,7 @@ angular.module('app.services', [])
     }
     var stackD = {
         getStackData: function(endUrl) {
+            var keyUrl = DateSettingService.getKeyUrl();
             var endUrl = endUrl;
             if (paramSet) {
                 stackCallUrl += "&" + endUrl;
@@ -107,10 +110,33 @@ angular.module('app.services', [])
     return stackD;
 }])
 
-.factory('MongoServiceFactory',  ['$http' ,'DateSettingService', function($http, DateSettingService) {
+.factory('MongoServiceFactory', ['$http', 'DateSettingService', function($http, DateSettingService) {
     var awsUrl = DateSettingService.getAwsUrl();
 
     var tagsData = {
+        setToken: function() {
+            // var searchVal = DateSettingService.getSearchTagValue();
+            // prepare url 
+            var stackCallUrl = awsUrl + "token";
+            console.log(" User entered Search Tag Url ---");
+            console.log(stackCallUrl);
+            var allStackData = {};
+            return $http({
+                method: 'GET',
+                url: stackCallUrl,
+                headers: {
+
+                    "Access-Control-Allow-Origin": "*"
+                        // "Access-Control-Allow-Origin": "GET,PUT,POST,DELETE"
+                }
+            }).then(function(response) {
+                // success . Do something with response
+                console.log(" Set Token Call -- ");
+                console.log(response.data.token);
+                DateSettingService.setKeyUrl(response.data.token);
+                return response.data;
+            });
+        },
         getMongoData: function(endURL) {
             // var searchVal = DateSettingService.getSearchTagValue();
             // prepare url 
@@ -122,9 +148,9 @@ angular.module('app.services', [])
                 method: 'GET',
                 url: stackCallUrl,
                 headers: {
-                    
+
                     "Access-Control-Allow-Origin": "*"
-                   // "Access-Control-Allow-Origin": "GET,PUT,POST,DELETE"
+                        // "Access-Control-Allow-Origin": "GET,PUT,POST,DELETE"
                 }
             }).then(function(response) {
                 // success . Do something with response
@@ -135,39 +161,42 @@ angular.module('app.services', [])
     }
     console.log(tagsData);
     return tagsData;
-    }])
-
-    .factory('TagsDataFactory', ['$http', 'DateSettingService', function($http, DateSettingService) {
-       var keyUrl = DateSettingService.getKeyUrl();
-       var stackCallUrl = "https://api.stackexchange.com/2.2/tags?order=desc&sort=popular&site=stackoverflow";
-       stackCallUrl += keyUrl;  
-       var tagsData = {
-           getTagsData: function() {
-               var allStackData = {};
-               return $http({
-                   method: 'GET',
-                   url: stackCallUrl,
-               }).then(function(response) {
-                   // success . Do something with response
-                   //    console.log(response.data);
-                   return response.data;
-             });
-           }
-       }
-       console.log(tagsData);
-       return tagsData;
-    }])
+}])
 
 
 
-    
+.factory('TagsDataFactory', ['$http', 'DateSettingService', function($http, DateSettingService) {
+    var stackCallUrl = "https://api.stackexchange.com/2.2/tags?order=desc&sort=popular&site=stackoverflow";
+    var tagsData = {
+        getTagsData: function() {
+            var keyUrl = DateSettingService.getKeyUrl();
+            stackCallUrl += keyUrl;
+            var allStackData = {};
+            return $http({
+                method: 'GET',
+                url: stackCallUrl,
+            }).then(function(response) {
+                // success . Do something with response
+                //    console.log(response.data);
+                return response.data;
+            });
+        }
+    }
+    console.log(tagsData);
+    return tagsData;
+}])
+
+
+
+
 
 .factory('SearchByTagDataFactory', ['$http', 'DateSettingService', function($http, DateSettingService) {
-    var keyUrl = DateSettingService.getKeyUrl();
-
+    
     var tagsData = {
         getSearchTagsData: function() {
             var searchVal = DateSettingService.getSearchTagValue();
+            var keyUrl = DateSettingService.getKeyUrl();
+
             // prepare url 
             var stackCallUrl = "https://api.stackexchange.com/2.2/tags/";
             var tagValue = searchVal;
@@ -200,34 +229,35 @@ angular.module('app.services', [])
 }])
 
 .factory('InfoFactory', ['$http', 'DateSettingService', function($http, DateSettingService) {
-    var keyUrl = DateSettingService.getKeyUrl();
     var stackCallUrl = "https://api.stackexchange.com/2.2/info?site=stackoverflow";
-         stackCallUrl += keyUrl;           
     var stackD = {
-            getLiveInfo: function() {
-                var allStackData = {};
-                return $http({
-                    method: 'GET',
-                    url: stackCallUrl,
-                }).then(function(response) {
-                    // success . Do something with response
-                    //    console.log(response.data);
-                    return response.data;
-                });
-            }
+        getLiveInfo: function() {
+            var keyUrl = DateSettingService.getKeyUrl();
+            stackCallUrl += keyUrl;
+    
+            var allStackData = {};
+            return $http({
+                method: 'GET',
+                url: stackCallUrl,
+            }).then(function(response) {
+                // success . Do something with response
+                //    console.log(response.data);
+                return response.data;
+            });
         }
+    }
 
-        return stackD;
-    }])
+    return stackD;
+}])
 
-.factory('UserLocationFactory', ['$http', function($http) {
-   
+.factory('UserLocationFactory', ['$http', 'DateSettingService',function($http, DateSettingService) {
+     var awsUrl = DateSettingService.getAwsUrl();
 
     var tagsData = {
         getUserLocationData: function() {
             // var searchVal = DateSettingService.getSearchTagValue();
             // prepare url 
-            var stackCallUrl = "http://192.168.0.102:8080/MongoRestServices/rest/userslocation";
+            var stackCallUrl = awsUrl + "userslocation";
             console.log(" User entered Search Tag Url ---");
             console.log(stackCallUrl);
             var allStackData = {};
@@ -235,9 +265,9 @@ angular.module('app.services', [])
                 method: 'GET',
                 url: stackCallUrl,
                 headers: {
-                    
+
                     "Access-Control-Allow-Origin": "*"
-                   // "Access-Control-Allow-Origin": "GET,PUT,POST,DELETE"
+                        // "Access-Control-Allow-Origin": "GET,PUT,POST,DELETE"
                 }
             }).then(function(response) {
                 // success . Do something with response
